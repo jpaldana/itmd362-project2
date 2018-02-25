@@ -14,3 +14,10 @@
 - writing organized semantic html
 - scaling mobile first designs with media queries
 - grid based design
+
+### Sufyan Menk
+
+**Strengths**
+- good at UI design and CSS
+- like to keep everything organized
+- experienced in javascript and SQL
