@@ -4,7 +4,7 @@
 
 - Randal Kwok
 
-##What we are building
+## What we are building
 
 ## Repo Links
 - [Shared group repo](https://github.com/CotermCoders/itmd362-project2)
