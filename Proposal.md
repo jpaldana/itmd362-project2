@@ -13,3 +13,4 @@
 - [JP Aldana](https://github.com/jpaldana/itmd362-project2)
 
 ## Project Management App
+- We plan to use Basecamp in order to keep our communications organized.
