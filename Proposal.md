@@ -7,6 +7,8 @@
 - Sufyan Menk
 
 ## What we are building
+- We are planning to build a movie ticket purchasing website.
+- Users will be able to select which movie they want to watch the time and the seat.
 
 ## Repo Links
 - [Shared group repo](https://github.com/CotermCoders/itmd362-project2)
