@@ -4,6 +4,7 @@
 
 - JP Aldana
 - Randal Kwok
+- Sufyan Menk
 
 ## What we are building
 
