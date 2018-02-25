@@ -2,6 +2,7 @@
 
 ## Group Members
 
+- JP Aldana
 - Randal Kwok
 
 ## What we are building
