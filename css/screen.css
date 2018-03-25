@@ -13,6 +13,19 @@ html {
   font-family: Helvetica, sans-serif;
 }
 
+body {
+  padding-left: 0.6em;/* 12 / 20 = 0.6 */
+  padding-right: 0.6em;/* 12 / 20 = 0.6 */
+}
+
+img,
+video,
+audio {
+  display: block;
+  max-width: 100%;
+}
+
+
 /* Layout Styles */
 
 /* Modular Styles */
