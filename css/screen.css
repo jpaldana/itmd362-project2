@@ -33,6 +33,25 @@ h1 {
 
 /* Layout Styles */
 
+/* Movie Grid
+      640px 3-column grid
+      Columns: 200px;
+      Gutters: 20px;
+      Poster module (Col 1): 200px;
+      Description module (Col 2-3): 420px;
+*/
+
+.poster {
+  float: left;
+ width: 31.25%; /* 200 / 640 = 0.3125 */
+}
+
+.description {
+  float: left;
+  width: 65.625%; /* 420 / 640 = 0.65625 */
+  margin-left: 3.125%; /* 20 / 640 = 0.03125 */
+}
+
 /* Modular Styles */
 
 /* State Styles */
