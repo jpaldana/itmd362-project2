@@ -11,6 +11,8 @@ html {
   font-size: 1.25em;/* 20 / 16 = 1.25 */
   line-height: 1.2em;/* 24 / 20 = 1.2 */
   font-family: Helvetica, sans-serif;
+  background: #00171F;
+  color: #E0E0E0;
 }
 
 body {
@@ -30,6 +32,10 @@ h1 {
   line-height: 1.6em;/* 48 / 30 = 1.6 */
 }
 
+h2 {
+  font-size: 1.25em;/* 25 / 20 = 1.25 */
+  line-height: 1.44em;/* 36 / 25 = 1.44 */
+}
 
 /* Layout Styles */
 
