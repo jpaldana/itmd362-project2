@@ -82,4 +82,13 @@ footer {
 
 /* State Styles */
 
-
+@media only screen and (min-width: 700px) {
+  #movies ul {
+      grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  #movies img{
+    max-width: 200px;
+  }
+  
+}
