@@ -92,3 +92,15 @@ footer {
   }
   
 }
+
+@media only screen and (min-width: 1280px) {  
+  #movies img{
+    max-width: 250px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {  
+  #movies img{
+    max-width: 300px;
+  }
+}
