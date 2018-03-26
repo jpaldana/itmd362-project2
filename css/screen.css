@@ -37,6 +37,12 @@ h2 {
   line-height: 1.44em;/* 36 / 25 = 1.44 */
 }
 
+footer {
+  margin-top: 25px;
+  color: #98999B;
+  text-align: center;
+}
+
 /* Layout Styles */
 
 /* Movie Grid
@@ -53,7 +59,7 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;
-  grid-gap: 10px 10px;
+  grid-gap: 10px 20px;
 }
 
 #movies img {
