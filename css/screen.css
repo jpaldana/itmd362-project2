@@ -15,7 +15,10 @@ html {
   color: #000000;
 }
 
-body {
+body {  
+}
+
+main {
   padding-left: 0.6em;/* 12 / 20 = 0.6 */
   padding-right: 0.6em;/* 12 / 20 = 0.6 */
 }
@@ -37,10 +40,21 @@ h2 {
   line-height: 1.44em;/* 36 / 25 = 1.44 */
 }
 
+header {
+  background-color: #F77D4C;
+  text-align: center;
+  border-bottom: 2px #000 solid;
+  color: #000000;
+}
+
 footer {
   margin-top: 25px;
   color: #98999B;
   text-align: center;
+}
+
+strong {
+  font-weight: bold;
 }
 
 /* Layout Styles */
@@ -91,6 +105,10 @@ footer {
     max-width: 200px;
   }
   
+  header h1{
+    text-align: left;
+    margin-left:30px; 
+  }
 }
 
 @media only screen and (min-width: 1280px) {  
