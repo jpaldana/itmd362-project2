@@ -49,10 +49,20 @@ h2 {
 
 /* Modular Styles */
 
-#movies ul{
+#movies ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-flow: row;
+}
+
+#movies img {
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#movies figcaption {
+  text-align: center;
 }
 
 /* State Styles */
