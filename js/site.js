@@ -5,6 +5,15 @@ $(function() {
   var paymentCc = $("#payment_cc");
   var paymentDate = $("#payment_date");
   var paymentCvv = $("#payment_cvv");
+  
+  var paymentLog = $("#payment_log");
+
+  var logEvent = function(message) {
+    console.log(message);
+    paymentLog.append(
+      $("<li>").text(message)
+    );
+  }
 
   var validatePaymentFields = function() {
     // make sure the following fields are not empty
@@ -14,18 +23,19 @@ $(function() {
         paymentCc.val().length == 0 ||
         paymentDate.val().length == 0 ||
         paymentCvv.val().length == 0) {
-      console.log("Empty field detected.");
+      logEvent("Empty field detected.");
     }
 
   };
 
   var runPaymentFlow = function(e) {
     e.preventDefault();
+    paymentLog.empty();
     if (validatePaymentFields()) {
-      console.log("Success, pretend to POST data request or something.");
+      logEvent("Success, pretend to POST data request or something.");
     }
     else {
-      console.log("Failed. Show an error.");
+      logEvent("Failed. Show an error.");
     }
   };
 
