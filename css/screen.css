@@ -11,8 +11,8 @@ html {
   font-size: 1.25em;/* 20 / 16 = 1.25 */
   line-height: 1.2em;/* 24 / 20 = 1.2 */
   font-family: Helvetica, sans-serif;
-  background: #00171F;
-  color: #E0E0E0;
+  background: #FFFFFF;
+  color: #000000;
 }
 
 body {
@@ -47,17 +47,32 @@ h2 {
       Description module (Col 2-3): 420px;
 */
 
-.poster {
-  float: left;
- width: 31.25%; /* 200 / 640 = 0.3125 */
-}
-
-.description {
-  float: left;
-  width: 65.625%; /* 420 / 640 = 0.65625 */
-  margin-left: 3.125%; /* 20 / 640 = 0.03125 */
-}
-
 /* Modular Styles */
+
+#movies ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: row;
+  grid-gap: 50px 20px;
+}
+
+#movies img {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 100px;
+  max-width: 300px;
+  border-radius: 5px;
+  border-color:black;
+}
+
+#movies figcaption {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#movies a{
+  text-decoration: none;
+  color: #000000;
+}
 
 /* State Styles */
