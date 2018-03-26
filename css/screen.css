@@ -37,6 +37,12 @@ h2 {
   line-height: 1.44em;/* 36 / 25 = 1.44 */
 }
 
+footer {
+  margin-top: 25px;
+  color: #98999B;
+  text-align: center;
+}
+
 /* Layout Styles */
 
 /* Movie Grid
@@ -51,17 +57,16 @@ h2 {
 
 #movies ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;
-  grid-gap: 50px 20px;
+  grid-gap: 10px 20px;
 }
 
 #movies img {
   margin-left: auto;
   margin-right: auto;
   min-width: 100px;
-  max-width: 300px;
-  border-radius: 5px;
+  border-radius: 2px;
   border-color:black;
 }
 
@@ -76,3 +81,26 @@ h2 {
 }
 
 /* State Styles */
+
+@media only screen and (min-width: 700px) {
+  #movies ul {
+      grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  #movies img{
+    max-width: 200px;
+  }
+  
+}
+
+@media only screen and (min-width: 1280px) {  
+  #movies img{
+    max-width: 250px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {  
+  #movies img{
+    max-width: 300px;
+  }
+}
