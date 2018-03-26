@@ -4,6 +4,7 @@ $(function() {
   var paymentZip = $("#payment_zip");
   var zipRegex = /^\d{5}$/;
   var paymentCc = $("#payment_cc");
+  var ccRegex = /^\d{15,16}$/;
   var paymentDate = $("#payment_date");
   var paymentCvv = $("#payment_cvv");
   
@@ -32,6 +33,10 @@ $(function() {
     if (!zipRegex.test(paymentZip.val())) {
       isValid = false;
       logEvent("Invalid zipcode");
+    }
+    if (!ccRegex.test(paymentCc.val())) {
+      isValid = false;
+      logEvent("Invalid Credit Card Number");
     }
 
     return isValid;
