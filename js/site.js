@@ -33,7 +33,7 @@ $(function() {
       logEvent("Empty field detected.");
       isValid = false;
     }
-    if (!emailRegex.test(payment_email.val())) {
+    if (!emailRegex.test(paymentEmail.val())) {
       isValid = false;
       logEvent("Invalid e-mail");
     }
