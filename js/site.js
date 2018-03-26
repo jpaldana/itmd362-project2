@@ -7,6 +7,15 @@ $(function() {
   var paymentCvv = $("#payment_cvv");
 
   var validatePaymentFields = function() {
+    // make sure the following fields are not empty
+    if (paymentName.val().length == 0 ||
+        paymentEmail.val().length == 0 ||
+        paymentZip.val().length == 0 ||
+        paymentCc.val().length == 0 ||
+        paymentDate.val().length == 0 ||
+        paymentCvv.val().length == 0) {
+      console.log("Empty field detected.");
+    }
 
   };
 
