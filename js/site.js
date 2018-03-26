@@ -2,6 +2,7 @@ $(function() {
   var paymentName = $("#payment_name");
   var paymentEmail = $("#payment_email");
   var paymentZip = $("#payment_zip");
+  var zipRegex = /^\d{5}$/;
   var paymentCc = $("#payment_cc");
   var paymentDate = $("#payment_date");
   var paymentCvv = $("#payment_cvv");
@@ -27,6 +28,10 @@ $(function() {
         paymentCvv.val().length == 0) {
       logEvent("Empty field detected.");
       isValid = false;
+    }
+    if (!zipRegex.test(paymentZip.val())) {
+      isValid = false;
+      logEvent("Invalid zipcode");
     }
 
     return isValid;
