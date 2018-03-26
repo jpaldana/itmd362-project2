@@ -17,6 +17,8 @@ $(function() {
 
   var validatePaymentFields = function() {
     // make sure the following fields are not empty
+    var isValid = true;
+
     if (paymentName.val().length == 0 ||
         paymentEmail.val().length == 0 ||
         paymentZip.val().length == 0 ||
@@ -24,8 +26,10 @@ $(function() {
         paymentDate.val().length == 0 ||
         paymentCvv.val().length == 0) {
       logEvent("Empty field detected.");
+      isValid = false;
     }
 
+    return isValid;
   };
 
   var runPaymentFlow = function(e) {
