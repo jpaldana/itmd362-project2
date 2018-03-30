@@ -19,8 +19,6 @@ body {
 }
 
 main {
-  padding-left: 0.6em;/* 12 / 20 = 0.6 */
-  padding-right: 0.6em;/* 12 / 20 = 0.6 */
 }
 
 img,
@@ -69,6 +67,17 @@ strong {
 
 /* Modular Styles */
 
+#landing {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+#movies {
+  padding-left: 0.6em;/* 12 / 20 = 0.6 */
+  padding-right: 0.6em;/* 12 / 20 = 0.6 */
+}
+
 #movies ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -116,8 +125,11 @@ strong {
 }
 
 @media only screen and (min-width: 1280px) {  
-  
-  main{
+  #landing {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+  #movies {
     padding-left:20%;
     padding-right:20%;
   }
