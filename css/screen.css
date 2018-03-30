@@ -15,7 +15,7 @@ html {
   color: #000000;
 }
 
-body {  
+body {
 }
 
 main {
@@ -56,14 +56,6 @@ strong {
 }
 
 /* Layout Styles */
-
-/* Movie Grid
-      640px 3-column grid
-      Columns: 200px;
-      Gutters: 20px;
-      Poster module (Col 1): 200px;
-      Description module (Col 2-3): 420px;
-*/
 
 /* Modular Styles */
 #header img{
