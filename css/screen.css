@@ -116,6 +116,12 @@ strong {
 }
 
 @media only screen and (min-width: 1280px) {  
+  
+  main{
+    padding-left:20%;
+    padding-right:20%;
+  }
+  
   #movies img{
     max-width: 250px;
   }
