@@ -10,9 +10,9 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 html {
   font-size: 1.25em;/* 20 / 16 = 1.25 */
   line-height: 1.2em;/* 24 / 20 = 1.2 */
-  font-family: 'PT Sans', sans-serif;
-  background: #ECECEC;
-  color: #000000;
+  font-family: Helvetica, sans-serif;
+  background-image: url(../media/gplaypattern_@2X.png);
+  background-repeat: repeat;
 }
 
 body {
@@ -57,6 +57,18 @@ strong {
 
 /* Layout Styles */
 
+.poster {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 100px;
+  border-radius: 3px;
+  border: 1px #FF6200 solid;
+}
+
+.poster:hover{
+    opacity: 0.7;
+}
+
 /* Modular Styles */
 
 #landing {
@@ -92,18 +104,6 @@ strong {
   grid-gap: 10px 20px;
 }
 
-#movies img {
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 100px;
-  border-radius: 2px;
-  border-color:black;
-}
-
-#movies img:hover{
-    opacity: 0.7;
-  }
-
 #movies figcaption {
   margin-top: 10px;
   text-align: center;
@@ -121,7 +121,7 @@ strong {
       grid-template-columns: 1fr 1fr 1fr;
   }
   
-  #movies img{
+  .poster{
     max-width: 200px;
   }
   
@@ -141,13 +141,13 @@ strong {
     padding-right:20%;
   }
   
-  #movies img{
+  .poster{
     max-width: 200px;
   }
 }
 
 @media only screen and (min-width: 1920px) {  
-  #movies img{
+  .poster{
     max-width: 250px;
   }
 }
