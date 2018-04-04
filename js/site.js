@@ -1,4 +1,26 @@
 $(function() {
+  // hardcoded movies for now, ideally would be from an AJAX request
+  var movies = {
+    "avengers-infinity-war": {
+      "title": "Avengers: Infinity War"
+    },
+    "blade-runner-2049": {
+      "title": "Blade Runner 2049"
+    },
+    "dunkirk": {
+      "title": "Dunkirk"
+    },
+    "inception": {
+      "title": "Inception"
+    },
+    "la-la-land": {
+      "title": "La La Land"
+    },
+    "thor-ragnarok": {
+      "title": "Thor Ragnarok"
+    }
+  };
+
   var logEvent = function(message) {
     console.log(message);
     $("#payment_log").append(
@@ -54,27 +76,6 @@ $(function() {
   $("#payment_form").on("submit", runPaymentFlow);
 
   var loadMovieSelection = function() {
-    // hardcoded movies for now
-    var movies = {
-      "avengers-infinity-war": {
-        "title": "Avengers: Infinity War"
-      },
-      "blade-runner-2049": {
-        "title": "Blade Runner 2049"
-      },
-      "dunkirk": {
-        "title": "Dunkirk"
-      },
-      "inception": {
-        "title": "Inception"
-      },
-      "la-la-land": {
-        "title": "La La Land"
-      },
-      "thor-ragnarok": {
-        "title": "Thor Ragnarok"
-      }
-    };
     var fragments = getQueryFragments();
     if (typeof movies[fragments.movie] == "object") {
       var details = movies[fragments.movie];
