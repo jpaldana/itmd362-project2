@@ -96,61 +96,44 @@ $(function() {
 
   $("#payment_form").on("submit", runPaymentFlow);
 
-  var loadMovieSelection = function() {
-    var fragments = getQueryFragments();
+  var updateFragmentText = function(fragments) {
+    // replace HTML elements text with correct values
     if (typeof movies[fragments.movie] == "object") {
       var details = movies[fragments.movie];
-      // replace HTML elements text with correct values
-      $("#purchase_title").text(details.title);
-      $("#purchase_section a").each(function() {
-        $(this).attr("href", $(this).attr("href") + 
-        "&movie=" + fragments.movie);
-      });
-    }
-    else {
-      console.log("Invalid movie?");
+      $(".movie-title").text(details.title);
+      if (typeof fragments.date == "string") {
+        // sanity
+        $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
+      }
     }
   };
+
+  // /purchase/
   if ($("html#purchase").length == 1) {
-    loadMovieSelection();
+    var fragments = getQueryFragments();
+    updateFragmentText(fragments);
+    $("#purchase_section a").each(function() {
+      $(this).attr("href", $(this).attr("href") + 
+      "&movie=" + fragments.movie);
+    });
   }
 
-  var loadSeatSelection = function() {
-    var fragments = getQueryFragments();
-    if (typeof movies[fragments.movie] == "object") {
-      var details = movies[fragments.movie];
-      // replace HTML elements text with correct values
-      $("#seats_title").text(details.title);
-      $("#seats_date").text(getDisplayDateTime(fragments.date, fragments.time));
-      // TODO - add seating
-      var fullFragment = location.href.substring(
-        location.href.lastIndexOf("/?") + 2
-      );
-      $("#seats_section a").each(function() {
-        $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
-      });
-    }
-    else {
-      console.log("Invalid movie?");
-    }
-  };
+  // /purchase/seats/
   if ($("html#seats").length == 1) {
-    loadSeatSelection();
+    var fragments = getQueryFragments();
+    updateFragmentText(fragments);
+    // TODO - add seating
+    var fullFragment = location.href.substring(
+      location.href.lastIndexOf("/?") + 2
+    );
+    $("#seats_section a").each(function() {
+      $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
+    });
   }
 
-  var loadPaymentSelection = function() {
-    var fragments = getQueryFragments();
-    if (typeof movies[fragments.movie] == "object") {
-      var details = movies[fragments.movie];
-      // replace HTML elements text with correct values
-      $("#payment_title").text(details.title);
-      $("#payment_date").text(getDisplayDateTime(fragments.date, fragments.time));
-    }
-    else {
-      console.log("Invalid movie?");
-    }
-  };
+  // /purchase/seats/payment/
   if ($("html#payment").length == 1) {
-    loadPaymentSelection();
+    var fragments = getQueryFragments();
+    updateFragmentText(fragments);
   }
 });
