@@ -75,6 +75,15 @@ $(function() {
         "title": "Thor Ragnarok"
       }
     };
+    var fragments = getQueryFragments();
+    if (typeof movies[fragments.movie] == "object") {
+      var details = movies[fragments.movie];
+      // replace HTML elements text with correct values
+      $("#purchase_title").text(details.title);
+    }
+    else {
+      console.log("Invalid movie?");
+    }
   };
   if ($("html#purchase").length == 1) {
     loadMovieSelection();
