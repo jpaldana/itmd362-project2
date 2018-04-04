@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="purchase">
 <head>
   <title>Coterm Theatres</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
+  <link rel="stylesheet" media="screen" href="../css/screen.css" />
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
 </head>
 <body>
   <header id="header">
     <h1>Coterm Theatres</h1>
   </header>
   <main>
-    <section id="purchase">
-      <h2>Avengers: Infinity War</h2>
+    <section id="purchase_section">
+      <h2 class="movie-title">Avengers: Infinity War</h2>
       <h3>Select a Date</h3>
       <p>Placeholder text. Maybe add different seating layouts here?</p>
       <ol>
         <li>Thursday, March 1, 2018
           <ol>
-            <a href="seats/">12:00 PM</a>
-            <a href="seats/">2:00 PM</a>
-            <a href="seats/">4:00 PM</a>
+            <a href="seats/?time=12:00:00&date=2018-03-01">12:00 PM</a>
+            <a href="seats/?time=14:00:00&date=2018-03-01">2:00 PM</a>
+            <a href="seats/?time=16:00:00&date=2018-03-01">4:00 PM</a>
           </ol>
         </li>
         <li>Friday, March 2, 2018
           <ol>
-            <a href="seats/">1:00 PM</a>
-            <a href="seats/">4:00 PM</a>
-            <a href="seats/">7:00 PM</a>
+            <a href="seats/?time=13:00:00&date=2018-03-02">1:00 PM</a>
+            <a href="seats/?time=16:00:00&date=2018-03-02">4:00 PM</a>
+            <a href="seats/?time=19:00:00&date=2018-03-02">7:00 PM</a>
           </ol>
         </li>
         <li>Saturday, March 3, 2018
           <ol>
-            <a href="seats/">6:00 AM</a>
-            <a href="seats/">10:00 AM</a>
-            <a href="seats/">12:00 PM</a>
+            <a href="seats/?time=06:00:00&date=2018-03-03">6:00 AM</a>
+            <a href="seats/?time=10:00:00&date=2018-03-03">10:00 AM</a>
+            <a href="seats/?time=12:00:00&date=2018-03-03">12:00 PM</a>
           </ol>
         </li>
       </ol>
@@ -44,5 +46,7 @@
       </ul>
     </aside>
   </main>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="../js/site.js"></script>
 </body>
 </html>
