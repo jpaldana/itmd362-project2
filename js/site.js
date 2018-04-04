@@ -1,72 +1,43 @@
 $(function() {
-  var paymentName = $("#payment_name");
-  var paymentEmail = $("#payment_email");
-  var emailRegex = /^[^\s@]+@[^\s@]+$/;
-  var paymentZip = $("#payment_zip");
-  var zipRegex = /^\d{5}$/;
-  var paymentCc = $("#payment_cc");
-  var ccRegex = /^\d{15,16}$/;
-  var paymentDate = $("#payment_date");
-  var dateRegex = /^\d{2}\/\d{2}$/;
-  var paymentCvv = $("#payment_cvv");
-  var ccvRegex = /^\d{3,4}$/;
-  
-  var paymentLog = $("#payment_log");
-
   var logEvent = function(message) {
     console.log(message);
-    paymentLog.append(
+    $("#payment_log").append(
       $("<li>").text(message)
     );
-  }
+  };
 
-  var validatePaymentFields = function() {
+  var validatePaymentFields = function(form_array) {
     // make sure the following fields are not empty
     var isValid = true;
-
-    if (paymentName.val().length == 0 ||
-        paymentEmail.val().length == 0 ||
-        paymentZip.val().length == 0 ||
-        paymentCc.val().length == 0 ||
-        paymentDate.val().length == 0 ||
-        paymentCvv.val().length == 0) {
-      logEvent("Empty field detected.");
-      isValid = false;
+    
+    form_array[0].regex = /.*/;
+    form_array[1].regex = /^[^\s@]+@[^\s@]+$/;
+    form_array[2].regex = /^\d{5}$/;
+    form_array[3].regex = /^\d{15,16}$/;
+    form_array[4].regex = /^\d{2}\/\d{2}$/;
+    form_array[5].regex = /^\d{3,4}$/;
+    
+    for(var i = 0; i < form_array.length; i++) {
+      if(!form_array[i].regex.test(form_array[i].value)) {
+        isValid = false;
+        logEvent("Invalid " + form_array[i].name);
+      }
     }
-    if (!emailRegex.test(paymentEmail.val())) {
-      isValid = false;
-      logEvent("Invalid e-mail");
-    }
-    if (!zipRegex.test(paymentZip.val())) {
-      isValid = false;
-      logEvent("Invalid zipcode");
-    }
-    if (!ccRegex.test(paymentCc.val())) {
-      isValid = false;
-      logEvent("Invalid Credit Card Number");
-    }
-    if (!dateRegex.test(paymentDate.val())) {
-      isValid = false;
-      logEvent("Invalid Expiration Date");
-    }
-    if (!ccvRegex.test(paymentCvv.val())) {
-      isValid = false;
-      logEvent("Invalid CCV");
-    }
-
     return isValid;
   };
 
   var runPaymentFlow = function(e) {
     e.preventDefault();
-    paymentLog.empty();
-    if (validatePaymentFields()) {
-      logEvent("Success, pretend to POST data request or something.");
+    $("#payment_log").empty();
+    var form_array = $(this ).serializeArray();
+    if (validatePaymentFields(form_array)) {
+      logEvent("Thank you");
+      console.log("Success, pretend to POST data request or something.");
     }
     else {
-      logEvent("Failed. Show an error.");
+      console.log("Failed. Show an error.");
     }
   };
 
-  $("#payment_checkout").on("click", runPaymentFlow);
+  $("#payment").on("submit", runPaymentFlow);
 });
