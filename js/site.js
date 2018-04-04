@@ -137,4 +137,20 @@ $(function() {
   if ($("html#seats").length == 1) {
     loadSeatSelection();
   }
+
+  var loadPaymentSelection = function() {
+    var fragments = getQueryFragments();
+    if (typeof movies[fragments.movie] == "object") {
+      var details = movies[fragments.movie];
+      // replace HTML elements text with correct values
+      $("#payment_title").text(details.title);
+      $("#payment_date").text(getDisplayDateTime(fragments.date, fragments.time));
+    }
+    else {
+      console.log("Invalid movie?");
+    }
+  };
+  if ($("html#payment").length == 1) {
+    loadPaymentSelection();
+  }
 });
