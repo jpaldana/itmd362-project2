@@ -40,4 +40,31 @@ $(function() {
   };
 
   $("#payment_form").on("submit", runPaymentFlow);
+
+  var loadMovieSelection = function() {
+    // hardcoded movies for now
+    var movies = {
+      "avengers-infinity-war": {
+        "title": "Avengers: Infinity War"
+      },
+      "blade-runner-2049": {
+        "title": "Blade Runner 2049"
+      },
+      "dunkirk": {
+        "title": "Dunkirk"
+      },
+      "inception": {
+        "title": "Inception"
+      },
+      "la-la-land": {
+        "title": "La La Land"
+      },
+      "thor-ragnarok": {
+        "title": "Thor Ragnarok"
+      }
+    };
+  };
+  if ($("html#purchase").length == 1) {
+    loadMovieSelection();
+  }
 });
