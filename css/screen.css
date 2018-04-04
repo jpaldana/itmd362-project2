@@ -59,7 +59,7 @@ strong {
 
 .poster {
   margin: auto;
-  max-width: 225px;
+  max-width: 160px;
   border-radius: 5px;
   border: 1px #FF6200 solid;
   -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
@@ -82,7 +82,7 @@ strong {
   padding: 20px 10px 20px 20px;
   margin: auto;
   text-align: center;
-  border-bottom: 3px 
+  border-bottom: 10px #FF6200 solid;
 }
 
 #landing h1, #landing h2{
@@ -105,7 +105,7 @@ strong {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;
-  grid-gap: 50px 20px;
+  grid-gap: 30px 15px;
 }
 
 #movies figcaption {
@@ -152,6 +152,6 @@ strong {
 
 @media only screen and (min-width: 1920px) {
   .poster{
-    max-width: 300px;
+    max-width: 250px;
   }
 }
