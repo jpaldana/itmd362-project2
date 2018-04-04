@@ -39,5 +39,5 @@ $(function() {
     }
   };
 
-  $("#payment").on("submit", runPaymentFlow);
+  $("#payment_form").on("submit", runPaymentFlow);
 });
