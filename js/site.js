@@ -122,6 +122,13 @@ $(function() {
       // replace HTML elements text with correct values
       $("#seats_title").text(details.title);
       $("#seats_date").text(getDisplayDateTime(fragments.date, fragments.time));
+      // TODO - add seating
+      var fullFragment = location.href.substring(
+        location.href.lastIndexOf("/?") + 2
+      );
+      $("#seats_section a").each(function() {
+        $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
+      });
     }
     else {
       console.log("Invalid movie?");
