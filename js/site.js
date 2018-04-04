@@ -93,4 +93,20 @@ $(function() {
   if ($("html#purchase").length == 1) {
     loadMovieSelection();
   }
+
+  var loadSeatSelection = function() {
+    var fragments = getQueryFragments();
+    if (typeof movies[fragments.movie] == "object") {
+      var details = movies[fragments.movie];
+      // replace HTML elements text with correct values
+      $("#seats_title").text(details.title);
+      $("#seats_date").text("");
+    }
+    else {
+      console.log("Invalid movie?");
+    }
+  };
+  if ($("html#seats").length == 1) {
+    loadSeatSelection();
+  }
 });
