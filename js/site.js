@@ -43,7 +43,7 @@ $(function() {
     return pairs;
   };
 
-  var getDisplayDate = function(date, time) {
+  var getDisplayDateTime = function(date, time) {
     var d = new Date(date + "T" + time + "-06:00"); // -06:00 for Chicago/Central Time
     var formattedDate = days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
     var formattedTime = (function(hours, minutes) {
@@ -121,7 +121,7 @@ $(function() {
       var details = movies[fragments.movie];
       // replace HTML elements text with correct values
       $("#seats_title").text(details.title);
-      $("#seats_date").text(getDisplayDate(fragments.date, fragments.time));
+      $("#seats_date").text(getDisplayDateTime(fragments.date, fragments.time));
     }
     else {
       console.log("Invalid movie?");
