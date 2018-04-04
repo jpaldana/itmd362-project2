@@ -6,6 +6,18 @@ $(function() {
     );
   };
 
+  var getQueryFragments = function() {
+    var queryFragments = location.href.substring(
+      location.href.lastIndexOf("/?") + 2
+    ).split("&");
+    var pairs = {};
+    for (var i in queryFragments) {
+      var splitFragment = queryFragments[i].split("=");
+      pairs[splitFragment[0]] = splitFragment[1];
+    }
+    return pairs;
+  }
+
   var validatePaymentFields = function(form_array) {
     // make sure the following fields are not empty
     var isValid = true;
