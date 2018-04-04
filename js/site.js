@@ -80,6 +80,10 @@ $(function() {
       var details = movies[fragments.movie];
       // replace HTML elements text with correct values
       $("#purchase_title").text(details.title);
+      $("#purchase_section a").each(function() {
+        $(this).attr("href", $(this).attr("href") + 
+        "&movie=" + fragments.movie);
+      });
     }
     else {
       console.log("Invalid movie?");
