@@ -134,6 +134,12 @@ strong {
   color: #000000;
 }
 
+#purchase_section{
+  padding-left: 0.6em;/* 12 / 20 = 0.6 */
+  padding-right: 0.6em;/* 12 / 20 = 0.6 */
+  padding-top: 1em;
+}
+
 /* State Styles */
 
 @media only screen and (min-width: 700px) {
