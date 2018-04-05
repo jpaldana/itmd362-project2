@@ -222,7 +222,7 @@ strong {
     padding-right:20%;
   }
   
-  #purchase_section span {
+  #purchase_section #movie-info {
     grid-column: 1;
     grid-row: 1;
   }
