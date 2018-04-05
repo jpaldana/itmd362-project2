@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" id="payment">
 <head>
-  <title>Coterm Theatres</title>
+  <title>Coterm Theatre</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
   <link rel="stylesheet" media="screen" href="../../../css/screen.css" />
@@ -9,9 +9,17 @@
 </head>
 <body>
   <header id="header">
-    <h1>Coterm Theatres</h1>
+    <h1>Coterm Theatre</h1>
   </header>
   <main>
+    <aside class="return">
+      <ul>
+        <li>Return to:</li>
+        <li><a href="../../../">movies</a></li>
+        <li><a href="../../" class="return">times</a></li>
+        <li><a href="../" class="return">seats</a></li>
+      </ul>
+    </aside>
     <section id="payment_section">
       <h2 class="movie-title">Avengers: Infinity War</h2>
       <h3 class="movie-date">Thursday, March 1, 2018 - 12:00 PM</h3>
@@ -45,7 +53,7 @@
         </li>
         <li>
           <p>
-            By clicking below, you authorize Coterm Theatres to charge your credit 
+            By clicking below, you authorize Coterm Theatre to charge your credit 
             or debit card by the amount listed above. If you have any questions about 
             your purchase, please contact us directly. Just kidding. This is a test 
             form. But seriously, please do not enter your real credit card number 
@@ -57,16 +65,9 @@
           <input type="submit" value="Checkout" id="payment_checkout" />
         </li>
       </ul>
+      <ul id="payment_log"></ul>
     </form>
   </main>
-  <aside>
-    <ul id="payment_log"></ul>
-    <ul>
-      <li><a href="../../../">Return to movie selection</a></li>
-      <li><a href="../../" class="return">Return to time selection</a></li>
-      <li><a href="../" class="return">Return to seat selection</a></li>
-    </ul>
-  </aside>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="../../../js/site.js"></script>
 </body>
