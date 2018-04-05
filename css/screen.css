@@ -123,6 +123,7 @@ aside.return {
   color: white;
   font-family: 'PT Sans', sans-serif;
   padding: 1em 1em;
+  border-bottom: 10px #FF6200 solid;
 }
 aside.return a {
   color: white;
@@ -136,7 +137,7 @@ aside.return li:nth-child(1) {
   margin: 0 0.5em;
 }
 aside.return li:nth-child(n+3)::before {
-  content: '<';
+  content: '\2039';
   margin: 0 0.5em 0 0.25em;
 }
 
