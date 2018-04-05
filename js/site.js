@@ -172,6 +172,18 @@ $(function() {
       $(".movie-meta#genre").text(details.genre);
       $(".movie-meta#rating").text(details.rating);
       $("p#plot-summary-text").text(details.desc);
+      // replace placeholder dates
+      $("#time ol").empty();
+      for (var date in details.dates) {
+        var $timeContainer = $("<ol>");
+        for (var i in details.dates[date]) {
+          var time = details.dates[date][i];
+          var formattedTime = getDisplayTime(time);
+          $timeContainer.append("<li><a href='seats/?time=" + time + "&date=" + date + "'>" + formattedTime + "</a></li>");
+        }
+        var $dateContainer = $("<li>").text(getDisplayDate(date)).append($timeContainer);
+        $("#time > ol").append($dateContainer);
+      }
       if (typeof fragments.date == "string") {
         // sanity
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
