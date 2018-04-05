@@ -75,7 +75,7 @@ strong {
 .purchase-poster {
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   max-width: 220px;
   border-radius: 3px;
   -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
@@ -93,10 +93,20 @@ strong {
   opacity: 0.6;
   color: #FFF;
   border-radius: 2px;
-  padding: 5px;
+  padding: 20px;
   -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
   -moz-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
   box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
 }
 
 /* Modular Styles */
