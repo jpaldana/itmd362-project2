@@ -6,6 +6,7 @@ $(function() {
   var movies = {
     "avengers-infinity-war": {
       "title": "Avengers: Infinity War",
+      "poster": "avengers_infinity_war.jpg",
       "rating": "PG-13",
       "genre": "Action, Adventure, Fantasy",
       "desc": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos.",
@@ -17,6 +18,7 @@ $(function() {
     },
     "blade-runner-2049": {
       "title": "Blade Runner 2049",
+      "poster": "blade_runner_2049.jpg",
       "rating": "R",
       "genre": "Drama, Mystery, Sci-Fi",
       "desc": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
@@ -28,6 +30,7 @@ $(function() {
     },
     "dunkirk": {
       "title": "Dunkirk",
+      "poster": "dunkirk.jpg",
       "rating": "PG-13",
       "genre": "Action, Drama, History",
       "desc": "Allied soldiers from Belgium, the British Empire and France are surrounded by the German Army, and evacuated during a fierce battle in World War II.",
@@ -39,6 +42,7 @@ $(function() {
     },
     "inception": {
       "title": "Inception",
+      "poster": "inception.jpg",
       "rating": "PG-13",
       "genre": "Action, Adventure, Sci-Fi",
       "desc": "A thief, who steals corporate secrets through the use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
@@ -50,6 +54,7 @@ $(function() {
     },
     "la-la-land": {
       "title": "La La Land",
+      "poster": "la_la_land.jpg",
       "rating": "PG-13",
       "genre": "Comedy, Drama, Music",
       "desc": "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
@@ -61,6 +66,7 @@ $(function() {
     },
     "thor-ragnarok": {
       "title": "Thor Ragnarok",
+      "poster": "thor_ragnarok.jpg",
       "rating": "PG-13",
       "genre": "Action, Adventure, Comedy",
       "desc": "Thor is imprisoned on the planet Sakaar, and must race against time to return to Asgard and stop Ragnarök.",
