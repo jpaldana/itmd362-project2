@@ -168,6 +168,10 @@ $(function() {
         $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
       });
       $(".movie-title").text(details.title);
+      $(".movie-poster#poster").attr("src", "../media/posters/" + details.poster); // TODO?
+      $(".movie-meta#genre").text(details.genre);
+      $(".movie-meta#rating").text(details.rating);
+      $("p#plot-summary-text").text(details.desc);
       if (typeof fragments.date == "string") {
         // sanity
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
