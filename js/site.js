@@ -100,6 +100,12 @@ $(function() {
     // replace HTML elements text with correct values
     if (typeof movies[fragments.movie] == "object") {
       var details = movies[fragments.movie];
+      var fullFragment = location.href.substring(
+        location.href.lastIndexOf("/?") + 2
+      );
+      $("a.return").each(function() {
+        $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
+      });
       $(".movie-title").text(details.title);
       if (typeof fragments.date == "string") {
         // sanity
