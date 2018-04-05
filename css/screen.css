@@ -55,6 +55,29 @@ strong {
   font-weight: bold;
 }
 
+aside.return {
+  background-color: #262626;
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+  padding: 1em 1em;
+  border-bottom: 10px #FF6200 solid;
+}
+aside.return a {
+  color: white;
+  text-decoration-color: rgb(156, 60, 0);
+}
+aside.return li {
+  color: #FF6200;
+  display: inline-block;
+}
+aside.return li:nth-child(1) {
+  margin: 0 0.5em;
+}
+aside.return li:nth-child(n+3)::before {
+  content: '\2039';
+  margin: 0 0.5em 0 0.25em;
+}
+
 /* Layout Styles */
 
 .poster {
@@ -185,30 +208,6 @@ strong {
 
 #movie-info {
   margin-bottom: 15px;
-}
-
-
-aside.return {
-  background-color: #262626;
-  color: white;
-  font-family: 'PT Sans', sans-serif;
-  padding: 1em 1em;
-  border-bottom: 10px #FF6200 solid;
-}
-aside.return a {
-  color: white;
-  text-decoration-color: rgb(156, 60, 0);
-}
-aside.return li {
-  color: #FF6200;
-  display: inline-block;
-}
-aside.return li:nth-child(1) {
-  margin: 0 0.5em;
-}
-aside.return li:nth-child(n+3)::before {
-  content: '\2039';
-  margin: 0 0.5em 0 0.25em;
 }
 
 /* State Styles */
