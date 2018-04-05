@@ -5,7 +5,13 @@ $(function() {
   // hardcoded movies for now, ideally would be from an AJAX request
   var movies = {
     "avengers-infinity-war": {
-      "title": "Avengers: Infinity War"
+      "title": "Avengers: Infinity War",
+      "rating": "PG-13",
+      "genre": "Action, Adventure, Fantasy",
+      "desc": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos",
+      "dates": {
+        "2018-03-01": ["12:00:00", "14:00:00"]
+      }
     },
     "blade-runner-2049": {
       "title": "Blade Runner 2049"
