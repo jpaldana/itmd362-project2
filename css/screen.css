@@ -95,7 +95,7 @@ aside.return li:nth-child(n+3)::before {
   opacity: 0.5;
 }
 
-.purchase-poster {
+.movie-poster {
   margin: auto;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -241,7 +241,7 @@ aside.return li:nth-child(n+3)::before {
     padding-right:20%;
   }
   
-  .purchase-poster {
+  .movie-poster {
     max-width: 250px;
   }
   
