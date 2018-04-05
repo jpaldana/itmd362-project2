@@ -97,9 +97,13 @@ $(function() {
     return pairs;
   };
 
-  var getDisplayDateTime = function(date, time) {
-    var d = new Date(date + "T" + time + "-06:00"); // -06:00 for Chicago/Central Time
+  var getDisplayDate = function(date) {
+    var d = new Date(date + "T12:00:00Z");
     var formattedDate = days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    return formattedDate;
+  };
+  var getDisplayTime = function(time) {
+    var d = new Date("2018-01-01T" + time + "-06:00"); // -06:00 for Chicago/Central Time
     var formattedTime = (function(hours, minutes) {
       if (hours > 12) {
         return (hours - 12) + ":" + (minutes < 10 ? "0" + minutes : minutes) + " PM";
@@ -112,7 +116,10 @@ $(function() {
         return hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " AM";
       }
     })(d.getHours(), d.getMinutes());
-    return formattedDate + " - " + formattedTime;
+    return formattedTime;
+  };
+  var getDisplayDateTime = function(date, time) {
+    return getDisplayDate(date) + " - " + getDisplayTime(time);
   };
 
   var validatePaymentFields = function(form_array) {
