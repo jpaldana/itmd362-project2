@@ -14,7 +14,13 @@ $(function() {
       }
     },
     "blade-runner-2049": {
-      "title": "Blade Runner 2049"
+      "title": "Blade Runner 2049",
+      "rating": "R",
+      "genre": "Drama, Mystery, Sci-Fi",
+      "desc": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard",
+      "dates": {
+        "2018-03-02": ["12:00:00", "14:00:00"]
+      }
     },
     "dunkirk": {
       "title": "Dunkirk"
