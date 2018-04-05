@@ -51,7 +51,13 @@ $(function() {
     },
     },
     "thor-ragnarok": {
-      "title": "Thor Ragnarok"
+      "title": "Thor Ragnarok",
+      "rating": "PG-13",
+      "genre": "Action, Adventure, Comedy",
+      "desc": "Thor is imprisoned on the planet Sakaar, and must race against time to return to Asgard and stop Ragnarök.",
+      "dates": {
+        "2018-03-06": ["12:00:00", "14:00:00"]
+      }
     }
   };
 
