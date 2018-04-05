@@ -160,6 +160,11 @@ aside.return li:nth-child(n+3)::before {
   display: flex;
 }
 
+.row h3 {
+  left: -100vw;
+  position: absolute;
+}
+
 /* State Styles */
 
 @media only screen and (min-width: 700px) {
