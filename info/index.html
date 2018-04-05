@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="purchase">
+<html lang="en" id="info" class="nojs">
 <head>
   <title>Coterm Theatre</title>
   <meta charset="utf-8" />
@@ -9,19 +9,29 @@
 </head>
 <body>
   <header id="header">
-    <h1>Coterm Theatre</h1>
+    <h1><strong>Coterm</strong> Theatre</h1>
   </header>
   <main>
-    <aside class="return">
+   <aside class="return">
       <ul>
         <li>Return to:</li>
         <li><a href="../">movies</a></li>
       </ul>
     </aside>
-    <section id="purchase_section">
-      <h2 class="movie-title">Avengers: Infinity War</h2>
+    <section id="info_section">
+     <article id="movie-info">
+      <h2 class="movie-title">{Insert Movie Title}</h2>
+      <img class="movie-poster" id="poster" src="../media/posters/avengers_infinity_war.jpg" />
+      <h3 class="movie-meta" id="genre">{Insert Genre}</h3>
+      <h3 class="movie-meta" id="rating">{Insert Rating}</h3>
+      </article>
+      <article class="card" id="plot-summary">
+        <h3>Plot Summary</h3>
+        <p id="plot-summary-text">{Insert Plot Summary}</p>
+      </article>
+      <article class="card" id="time">
+      <h3>Select a Showtime</h3>
       <h3>Select a Date</h3>
-      <p>Placeholder text. Maybe add different seating layouts here?</p>
       <ol>
         <li>Thursday, March 1, 2018
           <ol>
@@ -45,8 +55,13 @@
           </ol>
         </li>
       </ol>
+      </article>
     </section>
   </main>
+  <!-- Footer -->
+  <footer id="footer">
+    <p>&copy; 2018 Coterm Coders</p>
+  </footer>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="../js/site.js"></script>
 </body>
