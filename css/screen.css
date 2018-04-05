@@ -210,6 +210,28 @@ strong {
     padding-right:20%;
   }
   
+  .purchase-poster {
+    max-width: 250px;
+  }
+  
+  #purchase_section {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    grid-gap: 30px 15px;
+    padding-left:20%;
+    padding-right:20%;
+  }
+  
+  #purchase_section span {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  #purchase_section #plot-summary {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
   .poster{
     max-width: 200px;
   }
