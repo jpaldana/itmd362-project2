@@ -154,6 +154,7 @@ aside.return li:nth-child(n+3)::before {
   padding: 0;
   background: #333;
   text-align: center;
+  margin-bottom: 1em;
 }
 
 .seats {
@@ -176,6 +177,7 @@ aside.return li:nth-child(n+3)::before {
   padding: 3vw 0;
   text-align: center;
   text-decoration: none;
+  color: black;
 }
 
 /* State Styles */
