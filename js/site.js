@@ -41,7 +41,14 @@ $(function() {
       }
     },
     "la-la-land": {
-      "title": "La La Land"
+      "title": "La La Land",
+      "rating": "PG-13",
+      "genre": "Comedy, Drama, Music",
+      "desc": "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
+      "dates": {
+        "2018-03-05": ["12:00:00", "14:00:00"]
+      }
+    },
     },
     "thor-ragnarok": {
       "title": "Thor Ragnarok"
