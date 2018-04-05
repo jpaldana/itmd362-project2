@@ -88,6 +88,17 @@ strong {
   text-align: center;
 }
 
+.card {
+  background-color: #000;
+  opacity: 0.6;
+  color: #FFF;
+  border-radius: 2px;
+  padding: 5px;
+  -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+}
+
 /* Modular Styles */
 
 #landing {
@@ -138,6 +149,17 @@ strong {
   padding-left: 0.6em;/* 12 / 20 = 0.6 */
   padding-right: 0.6em;/* 12 / 20 = 0.6 */
   padding-top: 1em;
+}
+
+#purchase_section ol ol a{
+  padding: 5px;
+  background-color: #FF6200;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-box-shadow: 22px 22px 23px -17px rgba(0,0,0,0.4);
+  -moz-box-shadow: 22px 22px 23px -17px rgba(0,0,0,0.4);
+  box-shadow: 22px 22px 23px -17px rgba(0,0,0,0.4);
 }
 
 /* State Styles */
