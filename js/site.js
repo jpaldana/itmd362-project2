@@ -23,7 +23,13 @@ $(function() {
       }
     },
     "dunkirk": {
-      "title": "Dunkirk"
+      "title": "Dunkirk",
+      "rating": "PG-13",
+      "genre": "Action, Drama, History",
+      "desc": "Allied soldiers from Belgium, the British Empire and France are surrounded by the German Army, and evacuated during a fierce battle in World War II.",
+      "dates": {
+        "2018-03-03": ["12:00:00", "14:00:00"]
+      }
     },
     "inception": {
       "title": "Inception"
