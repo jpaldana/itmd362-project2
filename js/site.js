@@ -8,7 +8,7 @@ $(function() {
       "title": "Avengers: Infinity War",
       "rating": "PG-13",
       "genre": "Action, Adventure, Fantasy",
-      "desc": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos",
+      "desc": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos.",
       "dates": {
         "2018-03-01": ["12:00:00", "14:00:00"]
       }
@@ -17,7 +17,7 @@ $(function() {
       "title": "Blade Runner 2049",
       "rating": "R",
       "genre": "Drama, Mystery, Sci-Fi",
-      "desc": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard",
+      "desc": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
       "dates": {
         "2018-03-02": ["12:00:00", "14:00:00"]
       }
@@ -32,7 +32,13 @@ $(function() {
       }
     },
     "inception": {
-      "title": "Inception"
+      "title": "Inception",
+      "rating": "PG-13",
+      "genre": "Action, Adventure, Sci-Fi",
+      "desc": "A thief, who steals corporate secrets through the use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+      "dates": {
+        "2018-03-04": ["12:00:00", "14:00:00"]
+      }
     },
     "la-la-land": {
       "title": "La La Land"
