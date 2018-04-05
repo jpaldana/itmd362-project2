@@ -72,6 +72,17 @@ strong {
   opacity: 0.5;
 }
 
+.purchase-poster {
+  margin: auto;
+  margin-top: 20px;
+  max-width: 200px;
+  border-radius: 3px;
+  -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  transition: .5s ease;
+}
+
 /* Modular Styles */
 
 #landing {
