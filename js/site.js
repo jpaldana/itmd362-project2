@@ -168,17 +168,17 @@ $(function() {
     }
   };
 
-  // /purchase/
-  if ($("html#purchase").length == 1) {
+  // /info/
+  if ($("html#info").length == 1) {
     var fragments = getQueryFragments();
     updateFragmentText(fragments);
-    $("#purchase_section a").each(function() {
+    $("#info_section a").each(function() {
       $(this).attr("href", $(this).attr("href") + 
       "&movie=" + fragments.movie);
     });
   }
 
-  // /purchase/seats/
+  // /info/seats/
   if ($("html#seats").length == 1) {
     var fragments = getQueryFragments();
     updateFragmentText(fragments);
@@ -191,7 +191,7 @@ $(function() {
     });
   }
 
-  // /purchase/seats/payment/
+  // /info/seats/payment/
   if ($("html#payment").length == 1) {
     var fragments = getQueryFragments();
     updateFragmentText(fragments);
