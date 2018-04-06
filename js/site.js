@@ -90,8 +90,9 @@ $(function() {
       location.href.lastIndexOf("/?") + 2
     ).split("&");
     var pairs = {};
-    for (var i in queryFragments) {
-      var splitFragment = queryFragments[i].split("=");
+    var i, splitFragment;
+    for (i in queryFragments) {
+      splitFragment = queryFragments[i].split("=");
       pairs[splitFragment[0]] = splitFragment[1];
     }
     return pairs;
@@ -125,6 +126,7 @@ $(function() {
   var validatePaymentFields = function(form_array) {
     // make sure the following fields are not empty
     var isValid = true;
+    var i;
     
     form_array[0].regex = /.*/;
     form_array[1].regex = /^[^\s@]+@[^\s@]+$/;
@@ -133,7 +135,7 @@ $(function() {
     form_array[4].regex = /^\d{2}\/\d{2}$/;
     form_array[5].regex = /^\d{3,4}$/;
     
-    for(var i = 0; i < form_array.length; i++) {
+    for(i = 0; i < form_array.length; i++) {
       if(!form_array[i].regex.test(form_array[i].value)) {
         isValid = false;
         logEvent("Invalid " + form_array[i].name);
@@ -143,9 +145,9 @@ $(function() {
   };
 
   var runPaymentFlow = function(e) {
+    var form_array = $(this).serializeArray();
     e.preventDefault();
     $("#payment_log").empty();
-    var form_array = $(this ).serializeArray();
     if (validatePaymentFields(form_array)) {
       logEvent("Thank you");
       console.log("Success, pretend to POST data request or something.");
@@ -155,13 +157,15 @@ $(function() {
     }
   };
 
-  $("#payment_form").on("submit", runPaymentFlow);
-
   var updateFragmentText = function(fragments) {
     // replace HTML elements text with correct values
+    var details, fullFragment;
+    var date, time, formattedTime;
+    var $timeContainer, $dateContainer;
+    var i;
     if (typeof movies[fragments.movie] === "object") {
-      var details = movies[fragments.movie];
-      var fullFragment = location.href.substring(
+      details = movies[fragments.movie];
+      fullFragment = location.href.substring(
         location.href.lastIndexOf("/?") + 2
       );
       $("a.return").each(function() {
@@ -174,14 +178,14 @@ $(function() {
       $("p#plot-summary-text").text(details.desc);
       // replace placeholder dates
       $("#time ol").empty();
-      for (var date in details.dates) {
-        var $timeContainer = $("<ol>");
-        for (var i in details.dates[date]) {
-          var time = details.dates[date][i];
-          var formattedTime = getDisplayTime(time);
+      for (date in details.dates) {
+        $timeContainer = $("<ol>");
+        for (i in details.dates[date]) {
+          time = details.dates[date][i];
+          formattedTime = getDisplayTime(time);
           $timeContainer.append("<li><a href='seats/?time=" + time + "&date=" + date + "'>" + formattedTime + "</a></li>");
         }
-        var $dateContainer = $("<li>").text(getDisplayDate(date)).append($timeContainer);
+        $dateContainer = $("<li>").text(getDisplayDate(date)).append($timeContainer);
         $("#time > ol").append($dateContainer);
       }
       if (typeof fragments.date === "string") {
@@ -191,24 +195,24 @@ $(function() {
     }
   };
 
+  var currentQueryFragments = getQueryFragments();
+  var fullFragment = location.href.substring(
+    location.href.lastIndexOf("/?") + 2
+  );
+
   // /info/
   if ($("html#info").length === 1) {
-    var fragments = getQueryFragments();
-    updateFragmentText(fragments);
+    updateFragmentText(currentQueryFragments);
     $("#info_section a").each(function() {
       $(this).attr("href", $(this).attr("href") + 
-      "&movie=" + fragments.movie);
+      "&movie=" + currentQueryFragments.movie);
     });
   }
 
   // /info/seats/
   if ($("html#seats").length === 1) {
-    var fragments = getQueryFragments();
-    updateFragmentText(fragments);
+    updateFragmentText(currentQueryFragments);
     // TODO - add seating
-    var fullFragment = location.href.substring(
-      location.href.lastIndexOf("/?") + 2
-    );
     $("#seats_section a").each(function() {
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
     });
@@ -216,7 +220,8 @@ $(function() {
 
   // /info/seats/payment/
   if ($("html#payment").length === 1) {
-    var fragments = getQueryFragments();
-    updateFragmentText(fragments);
+    updateFragmentText(currentQueryFragments);
   }
+
+  $("#payment_form").on("submit", runPaymentFlow);
 });
