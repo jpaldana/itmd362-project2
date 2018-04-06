@@ -150,7 +150,7 @@ aside.return li:nth-child(n+3)::before {
   border-bottom: 0.5em #FF6200 solid;
 }
 
-#landing h1, #landing h2{
+#landing h1, #landing h2 {
   vertical-align:middle;
 }
 
@@ -178,18 +178,18 @@ aside.return li:nth-child(n+3)::before {
   text-align: center;
 }
 
-#movies a{
+#movies a {
   text-decoration: none;
   color: #000000;
 }
 
-#info_section{
+#info_section {
   padding-left: 0.6em;/* 12 / 20 = 0.6 */
   padding-right: 0.6em;/* 12 / 20 = 0.6 */
   padding-top: 1em;
 }
 
-#info_section ol ol a{
+#info_section ol ol a {
   padding: 0.25em;
   background-color: #FF6200;
   color: #FFFFFF;
@@ -263,7 +263,7 @@ aside.return li:nth-child(n+3)::before {
       grid-template-columns: 1fr 1fr 1fr;
   }
   
-  .poster{
+  .poster {
     max-width: 10em;
   }
   
@@ -315,14 +315,14 @@ aside.return li:nth-child(n+3)::before {
     height: fit-content;
   }
   
-  .poster{
+  .poster {
     max-width: 10em;
   }
   
 }
 
 @media only screen and (min-width: 1920px) {
-  .poster{
+  .poster {
     max-width: 11em;
   }
 }
