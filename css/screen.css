@@ -142,7 +142,7 @@ aside.return li:nth-child(n+3)::before {
 #landing {
   background-color: #262626;
   color: white;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 700;
   padding: 1em 0.5em 1em 1em;
   margin: auto;
