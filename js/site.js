@@ -108,7 +108,7 @@ $(function() {
       if (hours > 12) {
         return (hours - 12) + ":" + (minutes < 10 ? "0" + minutes : minutes) + " PM";
       }
-      else if (hours == 12) {
+      else if (hours === 12) {
         // 12:00 PM
         return hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " PM";
       }
@@ -159,7 +159,7 @@ $(function() {
 
   var updateFragmentText = function(fragments) {
     // replace HTML elements text with correct values
-    if (typeof movies[fragments.movie] == "object") {
+    if (typeof movies[fragments.movie] === "object") {
       var details = movies[fragments.movie];
       var fullFragment = location.href.substring(
         location.href.lastIndexOf("/?") + 2
@@ -184,7 +184,7 @@ $(function() {
         var $dateContainer = $("<li>").text(getDisplayDate(date)).append($timeContainer);
         $("#time > ol").append($dateContainer);
       }
-      if (typeof fragments.date == "string") {
+      if (typeof fragments.date === "string") {
         // sanity
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
       }
@@ -192,7 +192,7 @@ $(function() {
   };
 
   // /info/
-  if ($("html#info").length == 1) {
+  if ($("html#info").length === 1) {
     var fragments = getQueryFragments();
     updateFragmentText(fragments);
     $("#info_section a").each(function() {
@@ -202,7 +202,7 @@ $(function() {
   }
 
   // /info/seats/
-  if ($("html#seats").length == 1) {
+  if ($("html#seats").length === 1) {
     var fragments = getQueryFragments();
     updateFragmentText(fragments);
     // TODO - add seating
@@ -215,7 +215,7 @@ $(function() {
   }
 
   // /info/seats/payment/
-  if ($("html#payment").length == 1) {
+  if ($("html#payment").length === 1) {
     var fragments = getQueryFragments();
     updateFragmentText(fragments);
   }
