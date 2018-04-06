@@ -68,7 +68,7 @@ aside.return li:nth-child(1) {
   margin: 0 0.5em;
 }
 aside.return li:nth-child(n+3)::before {
-  content: '\2039';
+  content: "\2039";
   margin: 0 0.5em 0 0.25em;
 }
 
