@@ -42,11 +42,11 @@ header {
   background-color: black;
   text-align: center;
   color: #FFFFFF;
-  padding: 15px 0 15px 0;
+  padding: 1.333em 0 1.333em 0;
 }
 
 footer {
-  margin-top: 25px;
+  margin-top: 1.25em;
   color: #98999B;
   text-align: center;
 }
@@ -60,7 +60,7 @@ aside.return {
   color: white;
   font-family: 'PT Sans', sans-serif;
   padding: 1em 1em;
-  border-bottom: 10px #FF6200 solid;
+  border-bottom: 0.5em #FF6200 solid;
 }
 aside.return a {
   color: white;
@@ -82,12 +82,12 @@ aside.return li:nth-child(n+3)::before {
 
 .poster {
   margin: auto;
-  max-width: 160px;
-  border-radius: 5px;
-  border: 1px #FF6200 solid;
-  -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  max-width: 8em;
+  border-radius: 0.25em;
+  border: 0.05em #FF6200 solid;
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
   transition: .5s ease;
 }
 
@@ -97,13 +97,13 @@ aside.return li:nth-child(n+3)::before {
 
 .movie-poster {
   margin: auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  max-width: 220px;
-  border-radius: 3px;
-  -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  max-width: 11em;
+  border-radius: 0.15em;
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
   transition: .5s ease;
 }
 
@@ -118,29 +118,29 @@ aside.return li:nth-child(n+3)::before {
 .card {
   background-color: #262626;
   color: #FFF;
-  border-radius: 2px;
-  padding: 20px;
-  -webkit-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  box-shadow: -1px 2px 18px -2px rgba(0,0,0,0.75);
-  margin-bottom: 15px;
+  border-radius: 0.1em;
+  padding: 1em;
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  margin-bottom: 1.333em;
 }
 
 .card h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
 }
 
 .card p {
-  font-size: 16px;
+  font-size: 0.8em;
 }
 
 .card ol li {
-  margin-bottom: 10px;
+  margin-bottom: 0.5em;
 }
 
 .card ol li ol {
-  margin-top: 10px;
+  margin-top: 0.5em;
 }
 
 /* Modular Styles */
@@ -150,10 +150,10 @@ aside.return li:nth-child(n+3)::before {
   color: white;
   font-family: 'PT Sans', sans-serif;
   font-weight: 700;
-  padding: 20px 10px 20px 20px;
+  padding: 1em 0.5em 1em 1em;
   margin: auto;
   text-align: center;
-  border-bottom: 10px #FF6200 solid;
+  border-bottom: 0.5em #FF6200 solid;
 }
 
 #landing h1, #landing h2{
@@ -163,7 +163,7 @@ aside.return li:nth-child(n+3)::before {
 #landing img {
   vertical-align: middle;
   float: left;
-  width: 80px;
+  width: 4em;
 }
 
 #movies {
@@ -176,11 +176,11 @@ aside.return li:nth-child(n+3)::before {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;
-  grid-gap: 30px 15px;
+  grid-gap: 1.5em 1.333em;
 }
 
 #movies figcaption {
-  margin-top: 10px;
+  margin-top: 0.5em;
   text-align: center;
 }
 
@@ -196,18 +196,18 @@ aside.return li:nth-child(n+3)::before {
 }
 
 #info_section ol ol a{
-  padding: 5px;
+  padding: 0.25em;
   background-color: #FF6200;
   color: #FFFFFF;
   text-decoration: none;
-  border-radius: 3px;
-  -webkit-box-shadow: 22px 22px 23px -17px rgba(0,0,0,0.4);
-  -moz-box-shadow: 22px 22px 23px -17px rgba(0,0,0,0.4);
-  box-shadow: 22px 22px 23px -17px rgba(0,0,0,0.4);
+  border-radius: 0.15em;
+  -webkit-box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0,0,0,0.4);
+  -moz-box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0,0,0,0.4);
+  box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0,0,0,0.4);
 }
 
 #movie-info {
-  margin-bottom: 15px;
+  margin-bottom: 1.333em;
 }
 
 /* Seat Selection */
@@ -270,7 +270,7 @@ aside.return li:nth-child(n+3)::before {
   }
   
   .poster{
-    max-width: 200px;
+    max-width: 10em;
   }
   
   #landing img {
@@ -293,13 +293,13 @@ aside.return li:nth-child(n+3)::before {
   }
   
   .movie-poster {
-    max-width: 250px;
+    max-width: 12.5em;
   }
   
   #info_section {
     display: grid;
     grid-template-columns: 0.4fr 0.6fr;
-    grid-gap: 30px 15px;
+    grid-gap: 1.5em 1.333em;
     padding-left:20%;
     padding-right:20%;
   }
@@ -322,13 +322,13 @@ aside.return li:nth-child(n+3)::before {
   }
   
   .poster{
-    max-width: 200px;
+    max-width: 10em;
   }
   
 }
 
 @media only screen and (min-width: 1920px) {
   .poster{
-    max-width: 220px;
+    max-width: 11em;
   }
 }
