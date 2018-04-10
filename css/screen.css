@@ -243,7 +243,7 @@ aside.return li:nth-child(n+3)::before {
   color: black;
 }
 
-.seats a.selected {
+#seats .row .seats a.selected {
   background: #FF6200;
 }
 
