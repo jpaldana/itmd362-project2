@@ -142,6 +142,16 @@ width: 80vw;
 margin: 0 auto;
 }
 
+#payment-form li input {
+width: 100%;
+padding: 1.25em;
+border: none;
+background-color: #262626;
+color: white;
+border-bottom: solid 0.2em #FF6200;
+box-sizing: border-box;
+}
+
 /* Modular Styles */
 
 #landing {
