@@ -90,21 +90,26 @@ $(function() {
       location.href.lastIndexOf("/?") + 2
     ).split("&");
     var pairs = {};
-    for (var i in queryFragments) {
-      var splitFragment = queryFragments[i].split("=");
+    var i, splitFragment;
+    for (i in queryFragments) {
+      splitFragment = queryFragments[i].split("=");
       pairs[splitFragment[0]] = splitFragment[1];
     }
     return pairs;
   };
 
-  var getDisplayDateTime = function(date, time) {
-    var d = new Date(date + "T" + time + "-06:00"); // -06:00 for Chicago/Central Time
+  var getDisplayDate = function(date) {
+    var d = new Date(date + "T12:00:00Z");
     var formattedDate = days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    return formattedDate;
+  };
+  var getDisplayTime = function(time) {
+    var d = new Date("2018-01-01T" + time + "-06:00"); // -06:00 for Chicago/Central Time
     var formattedTime = (function(hours, minutes) {
       if (hours > 12) {
         return (hours - 12) + ":" + (minutes < 10 ? "0" + minutes : minutes) + " PM";
       }
-      else if (hours == 12) {
+      else if (hours === 12) {
         // 12:00 PM
         return hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " PM";
       }
@@ -112,12 +117,16 @@ $(function() {
         return hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " AM";
       }
     })(d.getHours(), d.getMinutes());
-    return formattedDate + " - " + formattedTime;
+    return formattedTime;
+  };
+  var getDisplayDateTime = function(date, time) {
+    return getDisplayDate(date) + " - " + getDisplayTime(time);
   };
 
   var validatePaymentFields = function(form_array) {
     // make sure the following fields are not empty
     var isValid = true;
+    var i;
     
     form_array[0].regex = /.*/;
     form_array[1].regex = /^[^\s@]+@[^\s@]+$/;
@@ -126,7 +135,7 @@ $(function() {
     form_array[4].regex = /^\d{2}\/\d{2}$/;
     form_array[5].regex = /^\d{3,4}$/;
     
-    for(var i = 0; i < form_array.length; i++) {
+    for(i = 0; i < form_array.length; i++) {
       if(!form_array[i].regex.test(form_array[i].value)) {
         isValid = false;
         logEvent("Invalid " + form_array[i].name);
@@ -136,9 +145,9 @@ $(function() {
   };
 
   var runPaymentFlow = function(e) {
+    var form_array = $(this).serializeArray();
     e.preventDefault();
     $("#payment_log").empty();
-    var form_array = $(this ).serializeArray();
     if (validatePaymentFields(form_array)) {
       logEvent("Thank you");
       console.log("Success, pretend to POST data request or something.");
@@ -148,52 +157,71 @@ $(function() {
     }
   };
 
-  $("#payment_form").on("submit", runPaymentFlow);
-
   var updateFragmentText = function(fragments) {
     // replace HTML elements text with correct values
-    if (typeof movies[fragments.movie] == "object") {
-      var details = movies[fragments.movie];
-      var fullFragment = location.href.substring(
+    var details, fullFragment;
+    var date, time, formattedTime;
+    var $timeContainer, $dateContainer;
+    var i;
+    if (typeof movies[fragments.movie] === "object") {
+      details = movies[fragments.movie];
+      fullFragment = location.href.substring(
         location.href.lastIndexOf("/?") + 2
       );
       $("a.return").each(function() {
         $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
       });
       $(".movie-title").text(details.title);
-      if (typeof fragments.date == "string") {
+      $(".movie-poster#poster").attr("src", "../media/posters/" + details.poster); // TODO?
+      $(".movie-meta#genre").text(details.genre);
+      $(".movie-meta#rating").text(details.rating);
+      $("p#plot-summary-text").text(details.desc);
+      // replace placeholder dates
+      $("#time ol").empty();
+      for (date in details.dates) {
+        $timeContainer = $("<ol>");
+        for (i in details.dates[date]) {
+          time = details.dates[date][i];
+          formattedTime = getDisplayTime(time);
+          $timeContainer.append("<li><a href='seats/?time=" + time + "&date=" + date + "'>" + formattedTime + "</a></li>");
+        }
+        $dateContainer = $("<li>").text(getDisplayDate(date)).append($timeContainer);
+        $("#time > ol").append($dateContainer);
+      }
+      if (typeof fragments.date === "string") {
         // sanity
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
       }
     }
   };
 
-  // /purchase/
-  if ($("html#purchase").length == 1) {
-    var fragments = getQueryFragments();
-    updateFragmentText(fragments);
-    $("#purchase_section a").each(function() {
+  var currentQueryFragments = getQueryFragments();
+  var fullFragment = location.href.substring(
+    location.href.lastIndexOf("/?") + 2
+  );
+
+  // /info/
+  if ($("html#info").length === 1) {
+    updateFragmentText(currentQueryFragments);
+    $("#info_section a").each(function() {
       $(this).attr("href", $(this).attr("href") + 
-      "&movie=" + fragments.movie);
+      "&movie=" + currentQueryFragments.movie);
     });
   }
 
-  // /purchase/seats/
-  if ($("html#seats").length == 1) {
-    var fragments = getQueryFragments();
-    updateFragmentText(fragments);
+  // /info/seats/
+  if ($("html#seats").length === 1) {
+    updateFragmentText(currentQueryFragments);
     // TODO - add seating
-    var fullFragment = location.href.substring(
-      location.href.lastIndexOf("/?") + 2
-    );
     $("#seats_section a").each(function() {
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
     });
   }
 
-  // /purchase/seats/payment/
-  if ($("html#payment").length == 1) {
-    var fragments = getQueryFragments();
-    updateFragmentText(fragments);
+  // /info/seats/payment/
+  if ($("html#payment").length === 1) {
+    updateFragmentText(currentQueryFragments);
   }
+
+  $("#payment_form").on("submit", runPaymentFlow);
 });
