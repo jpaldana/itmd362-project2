@@ -157,6 +157,10 @@ aside.return li:nth-child(n+3)::before {
   font-size: 0.75em;
 }
 
+h3.movie-seats {
+  margin-bottom: 0.5em;
+}
+
 /* Modular Styles */
 
 #landing {
