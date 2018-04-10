@@ -213,9 +213,11 @@ $(function() {
   if ($("html#seats").length === 1) {
     updateFragmentText(currentQueryFragments);
     // TODO - add seating
+    /*
     $("#seats_section a").each(function() {
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
     });
+    */
   }
 
   // /info/seats/payment/
@@ -228,6 +230,16 @@ $(function() {
   // Seat Selection
   
   $('.seats a').on('click', function(e) {
+    e.preventDefault();
     $(this).toggleClass('selected');
+  });
+  
+  $('#payment_btn').on('click', function(e) {
+    var selected_seats = [];
+    $('.selected').each(function(){
+      var seat = $(this).attr('href').substring(1);
+      selected_seats.push(seat);
+    });
+    $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
   });
 });
