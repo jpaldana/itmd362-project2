@@ -237,7 +237,7 @@ $(function() {
     $(this).toggleClass('selected');
   });
   
-  $('#payment_btn').on('click', function(e) {
+  $('#payment-btn').on('click', function(e) {
     var selected_seats = [];
     $('.selected').each(function(){
       var seat = $(this).attr('href').substring(1);
