@@ -137,6 +137,52 @@ aside.return li:nth-child(n+3)::before {
   margin-top: 0.5em;
 }
 
+#payment-form, #payment-section {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+#payment-form li input {
+  width: 100%;
+  padding: 1.25em;
+  border: none;
+  background-color: #262626;
+  color: white;
+  border-bottom: solid 0.2em #FF6200;
+  box-sizing: border-box;
+}
+
+#payment-form li input[type="submit"] {
+  font-size: 1em;
+  padding: 0.5em;
+  background-color: #FF6200;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 0.15em;
+  margin-bottom: 0.5em;
+}
+
+#payment-form li p {
+  padding: 2em 0;
+  font-size: 0.75em;
+}
+
+h3.movie-seats {
+  margin-bottom: 0.5em;
+}
+
+#seats input[type="button"] {
+  float: right;
+  margin-right: 0.5em;
+  font-size: 1em;
+  padding: 0.5em;
+  background-color: #FF6200;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 0.15em;
+  margin-bottom: 0.5em;
+}
+
 /* Modular Styles */
 
 #landing {
@@ -208,6 +254,7 @@ aside.return li:nth-child(n+3)::before {
 #seats figure {
   width: 100vw;
   margin: 0 auto;
+  margin-bottom: 1em;
 }
 
 #screen {
@@ -322,6 +369,11 @@ aside.return li:nth-child(n+3)::before {
   .poster {
     max-width: 10em;
   }
+  
+  #payment-form, #payment-section {
+  width: 50vw;
+  margin: 0 auto;
+}
 
 }
 
