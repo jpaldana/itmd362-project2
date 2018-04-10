@@ -243,6 +243,10 @@ aside.return li:nth-child(n+3)::before {
   color: black;
 }
 
+.seats a.selected {
+  background: blue;
+}
+
 /* State Styles */
 @media only screen and (min-width: 520px) {
 

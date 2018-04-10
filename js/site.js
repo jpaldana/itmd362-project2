@@ -224,4 +224,10 @@ $(function() {
   }
 
   $("#payment_form").on("submit", runPaymentFlow);
+  
+  // Seat Selection
+  
+  $('.seats a').on('click', function(e) {
+    $(this).toggleClass('selected');
+  });
 });
