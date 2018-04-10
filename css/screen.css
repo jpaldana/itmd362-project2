@@ -137,7 +137,7 @@ aside.return li:nth-child(n+3)::before {
   margin-top: 0.5em;
 }
 
-#payment-form {
+#payment-form, #payment-section {
   width: 80vw;
   margin: 0 auto;
 }
@@ -370,7 +370,7 @@ h3.movie-seats {
     max-width: 10em;
   }
   
-  #payment-form {
+  #payment-form, #payment-section {
   width: 50vw;
   margin: 0 auto;
 }
