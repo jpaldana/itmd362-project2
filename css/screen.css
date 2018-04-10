@@ -137,6 +137,11 @@ aside.return li:nth-child(n+3)::before {
   margin-top: 0.5em;
 }
 
+#payment-form {
+width: 80vw;
+margin: 0 auto;
+}
+
 /* Modular Styles */
 
 #landing {
