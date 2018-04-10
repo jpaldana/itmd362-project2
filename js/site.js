@@ -206,7 +206,7 @@ $(function() {
   // /info/
   if ($("html#info").length === 1) {
     updateFragmentText(currentQueryFragments);
-    $("#info_section a").each(function() {
+    $("#info-section a").each(function() {
       $(this).attr("href", $(this).attr("href") + 
       "&movie=" + currentQueryFragments.movie);
     });
