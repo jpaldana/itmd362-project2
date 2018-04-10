@@ -80,7 +80,7 @@ $(function() {
 
   var logEvent = function(message) {
     console.log(message);
-    $("#payment_log").append(
+    $("#payment-log").append(
       $("<li>").text(message)
     );
   };
@@ -147,7 +147,7 @@ $(function() {
   var runPaymentFlow = function(e) {
     var form_array = $(this).serializeArray();
     e.preventDefault();
-    $("#payment_log").empty();
+    $("#payment-log").empty();
     if (validatePaymentFields(form_array)) {
       logEvent("Thank you");
       console.log("Success, pretend to POST data request or something.");
@@ -228,7 +228,7 @@ $(function() {
     updateFragmentText(currentQueryFragments);
   }
 
-  $("#payment_form").on("submit", runPaymentFlow);
+  $("#payment-form").on("submit", runPaymentFlow);
   
   // Seat Selection
   
