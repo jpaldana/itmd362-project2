@@ -7,7 +7,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 /* stylelint-enable */
 
 /* Base Styles */
-html {
+html, .stylelint {
   font-size: 1.25em; /* 20 / 16 = 1.25 */
   line-height: 1.2em; /* 24 / 20 = 1.2 */
   font-family: Helvetica, sans-serif;
@@ -129,7 +129,7 @@ aside.return li:nth-child(n+3)::before {
   font-size: 0.8em;
 }
 
-.card ol li {
+#info .card ol li {
   margin-bottom: 0.5em;
 }
 
@@ -232,7 +232,7 @@ aside.return li:nth-child(n+3)::before {
   position: absolute;
 }
 
-.seats a {
+#seats .row .seats a {
   background: grey;
   display: block;
   line-height: 1;
@@ -254,7 +254,7 @@ aside.return li:nth-child(n+3)::before {
     width: 26em; /* 520/20 = */
   }
 
-  .seats a {
+  #seats .row .seats a {
     width: 3em; /*60/20 = 3*/
     padding: 1em 0; /*20/20 = 3em*/
   }
