@@ -192,6 +192,9 @@ $(function() {
         // sanity
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
       }
+      if (typeof fragments.seats === "string") {
+        $(".movie-seats").text("Seats: " + fragments.seats);
+      }
     }
   };
 
