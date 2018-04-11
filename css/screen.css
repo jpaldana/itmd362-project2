@@ -191,6 +191,13 @@ h3.movie-seats {
   font-style: italic;
 }
 
+#payment-form li input.error {
+  background-color: #101010;
+  border-bottom: solid 0.2em red;
+  border-top: solid 0.2em red;
+  box-sizing: border-box;
+}
+
 /* Modular Styles */
 
 #landing {
