@@ -78,10 +78,10 @@ $(function() {
     }
   };
 
-  var logEvent = function(message) {
+  var logEvent = function(message, input) {
     console.log(message);
-    $("#payment-log").append(
-      $("<li>").text(message)
+    $("input[name='"+input+"']").after(
+      "<p class='error'>"+message+"</li>"
     );
   };
 
@@ -128,7 +128,7 @@ $(function() {
     var isValid = true;
     var i;
     
-    form_array[0].regex = /.*/;
+    form_array[0].regex = /.+/;
     form_array[1].regex = /^[^\s@]+@[^\s@]+$/;
     form_array[2].regex = /^\d{5}$/;
     form_array[3].regex = /^\d{15,16}$/;
@@ -138,7 +138,7 @@ $(function() {
     for(i = 0; i < form_array.length; i++) {
       if(!form_array[i].regex.test(form_array[i].value)) {
         isValid = false;
-        logEvent("Invalid " + form_array[i].name);
+        logEvent("Invalid " + form_array[i].name, form_array[i].name);
       }
     }
     return isValid;
