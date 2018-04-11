@@ -83,6 +83,9 @@ $(function() {
     $("input[name='"+input+"']").after(
       "<p class='error'>"+message+"</li>"
     );
+    $("input[name='"+input+"']").addClass(
+      "error"
+    );
   };
 
   var getQueryFragments = function() {
@@ -147,7 +150,8 @@ $(function() {
   var runPaymentFlow = function(e) {
     var form_array = $(this).serializeArray();
     e.preventDefault();
-    $("#payment-log").empty();
+    $("p.error").remove();
+    $("input.error").removeClass("error");
     if (validatePaymentFields(form_array)) {
       logEvent("Thank you");
       console.log("Success, pretend to POST data request or something.");
