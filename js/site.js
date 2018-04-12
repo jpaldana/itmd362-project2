@@ -216,6 +216,18 @@ $(function() {
   );
 
   var init = function() {
+    var i;
+    // replace movie posters on home page if tvdb call was successful
+    if (Object.keys(genres).length > 0) {
+      $("#movies ul").empty();
+      for (i in movies) {
+        $("#movies ul").append("<li><a href='info/?movie=" + i + "'><figure><img class='poster' src='" + movies[i].poster + "' alt='Poster of " + movies[i].title + "' /><figcaption>" + movies[i].title + "</figcaption></figure></a></li>");
+      }
+    }
+    else {
+      console.log("no movies");
+    }
+
     // /info/
     if ($("html#info").length === 1) {
       updateFragmentText(currentQueryFragments);
@@ -255,7 +267,8 @@ $(function() {
   };
 
   // try to fetch most popular 2018 movies off TMDb if not already in cache
-  if (localStorage.getItem("movie-cache")) {
+  if (localStorage.getItem("movie-cache") && localStorage.getItem("genre-cache")) {
+    genres = JSON.parse(localStorage.getItem("genre-cache"));
     movies = JSON.parse(localStorage.getItem("movie-cache"));
     console.log("retrieve from local storage", movies);
     init();
@@ -285,6 +298,7 @@ $(function() {
         }
         console.log(movies);
         localStorage.setItem("movie-cache", JSON.stringify(movies));
+        localStorage.setItem("genre-cache", JSON.stringify(genres));
       }).fail(function() {
         // failed to get latest movies
         console.log("failed to get latest movies");
