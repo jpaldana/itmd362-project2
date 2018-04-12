@@ -81,6 +81,7 @@ $(function() {
     }
   };
   var genres = {};
+  var TMDB_API_KEY = "dd415b0144677fe05f3bebfc458008a5";
 
   var getGenre = function(id) {
     return genres[id];
@@ -184,7 +185,7 @@ $(function() {
         $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
       });
       $(".movie-title").text(details.title);
-      $(".movie-poster#poster").attr("src", "../media/posters/" + details.poster); // TODO?
+      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) == "http" ? details.poster : "../media/posters/" + details.poster); // TODO?
       $(".movie-meta#genre").text(details.genre);
       $(".movie-meta#rating").text(details.rating);
       $("p#plot-summary-text").text(details.desc);
@@ -217,11 +218,15 @@ $(function() {
 
   var init = function() {
     var i;
-    // replace movie posters on home page if tvdb call was successful
     if (Object.keys(genres).length > 0) {
+      // replace movie posters on home page if tvdb call was successful
       $("#movies ul").empty();
       for (i in movies) {
         $("#movies ul").append("<li><a href='info/?movie=" + i + "'><figure><img class='poster' src='" + movies[i].poster + "' alt='Poster of " + movies[i].title + "' /><figcaption>" + movies[i].title + "</figcaption></figure></a></li>");
+      }
+      // replace background image with backdrop if movie is selected
+      if (typeof currentQueryFragments.movie == "string") {
+        $("html").css("background-image", "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
       }
     }
     else {
@@ -274,12 +279,12 @@ $(function() {
     init();
   }
   else {
-    $.getJSON("https://api.themoviedb.org/3/genre/movie/list?api_key=dd415b0144677fe05f3bebfc458008a5&language=en-US", function(data) {
+    $.getJSON("https://api.themoviedb.org/3/genre/movie/list?api_key="+TMDB_API_KEY+"&language=en-US", function(data) {
       var i;
       for (i in data.genres) {
         genres[data.genres[i].id] = data.genres[i].name;
       }
-      $.getJSON("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-01-01&primary_release_date.lte=2018-05-01&api_key=dd415b0144677fe05f3bebfc458008a5&language=en-US&sort_by=popularity.desc&certification_country=US&certification=PG-13&include_adult=false&include_video=false&page=1", function(data) {
+      $.getJSON("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-01-01&primary_release_date.lte=2018-05-01&api_key="+TMDB_API_KEY+"&language=en-US&sort_by=popularity.desc&certification_country=US&certification=PG-13&include_adult=false&include_video=false&page=1", function(data) {
         var copyDates = movies["avengers-infinity-war"].dates;
         var i, slug;
         movies = {};
@@ -289,7 +294,7 @@ $(function() {
           movies[slug] = {
             "title": data.results[i].title,
             "poster": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path,
-            "backdrop": "https://image.tmdb.org/t/p/w500" + data.results[i].backdrop_path,
+            "backdrop": "https://image.tmdb.org/t/p/original" + data.results[i].backdrop_path,
             "rating": "PG-13",
             "genre": data.results[i].genre_ids.map(getGenre).join(", "),
             "desc": data.results[i].overview,
@@ -299,14 +304,16 @@ $(function() {
         console.log(movies);
         localStorage.setItem("movie-cache", JSON.stringify(movies));
         localStorage.setItem("genre-cache", JSON.stringify(genres));
+        init();
       }).fail(function() {
         // failed to get latest movies
         console.log("failed to get latest movies");
+        init();
       });
     }).fail(function() {
       // failed to get genres
       console.log("failed to get genres");
+      init();
     });
-    init();
   }
 });
