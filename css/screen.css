@@ -169,11 +169,14 @@ a.tmdb {
   margin-top: 0.5em;
 }
 
-#payment-form,
-#payment-section {
+#payment-form {
   width: 80vw;
   margin: 0 auto;
-  padding-top: 1em;
+}
+
+#payment-section {
+  width: 80vw;
+  margin: 1em auto;
 }
 
 #payment-form li input {
@@ -352,6 +355,20 @@ h3.movie-seats {
   background: #FF6200;
 }
 
+section.confirmation {
+  background-color: #262626;
+  color: #FFF;
+  border-radius: 0.1em;
+  padding: 1em;
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+}
+
+section.confirmation h2.movie-title {
+  text-align: left;
+}
+
 /* State Styles */
 @media only screen and (min-width: 520px) {
 
@@ -441,7 +458,6 @@ h3.movie-seats {
 
   #payment-form, #payment-section {
     width: 50vw;
-    margin: 0 auto;
   }
 
 }
