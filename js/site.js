@@ -77,6 +77,13 @@ $(function() {
       }
     }
   };
+  var genres = {};
+  var TMDB_API_KEY = "dd415b0144677fe05f3bebfc458008a5";
+  var TICKET_PRICE = 8.50;
+
+  var getGenre = function(id) {
+    return genres[id];
+  };
 
   var logEvent = function(message, input) {
     console.log(message);
@@ -164,7 +171,7 @@ $(function() {
   var updateFragmentText = function(fragments) {
     // replace HTML elements text with correct values
     var details, fullFragment;
-    var date, time, formattedTime;
+    var date, time, formattedTime, seats;
     var $timeContainer, $dateContainer;
     var i;
     if (typeof movies[fragments.movie] === "object") {
@@ -176,7 +183,7 @@ $(function() {
         $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
       });
       $(".movie-title").text(details.title);
-      $(".movie-poster#poster").attr("src", "../media/posters/" + details.poster); // TODO?
+      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) === "http" ? details.poster : "../media/posters/" + details.poster); // TODO?
       $(".movie-meta#genre").text(details.genre);
       $(".movie-meta#rating").text(details.rating);
       $("p#plot-summary-text").text(details.desc);
@@ -197,7 +204,14 @@ $(function() {
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
       }
       if (typeof fragments.seats === "string") {
-        $(".movie-seats").text("Seats: " + fragments.seats);
+        seats = fragments.seats.toUpperCase().split(",");
+        $(".movie-seats").text("Seats: " + seats.join(", ") + " = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
+        // if the user went back to the seats page, preselect the seats
+        for (i in seats) {
+          $("a[href='#" + seats[i] + "']").addClass("selected");
+        }
+        $("#selected-tickets").text($(".seats a.selected").text() + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
+        $("#payment-btn").show();
       }
     }
   };
@@ -207,40 +221,117 @@ $(function() {
     location.href.lastIndexOf("/?") + 2
   );
 
-  // /info/
-  if ($("html#info").length === 1) {
-    updateFragmentText(currentQueryFragments);
-    $("#info-section a").each(function() {
-      $(this).attr("href", $(this).attr("href") + 
-      "&movie=" + currentQueryFragments.movie);
+  var init = function() {
+    var i;
+    if (Object.keys(genres).length > 0) {
+      // replace movie posters on home page if tvdb call was successful
+      $("#movies ul").empty();
+      for (i in movies) {
+        $("#movies ul").append("<li><a href='info/?movie=" + i + "'><figure><img class='poster' src='" + movies[i].poster + "' alt='Poster of " + movies[i].title + "' /><figcaption>" + movies[i].title + "</figcaption></figure></a></li>");
+      }
+      // replace background image with backdrop if movie is selected
+      if (typeof currentQueryFragments.movie === "string") {
+        $("html").css("background-image", "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.75) 100%), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
+      }
+    }
+    else {
+      console.log("no movies");
+    }
+
+    $("#payment-btn").hide();
+
+    // /info/
+    if ($("html#info").length === 1) {
+      updateFragmentText(currentQueryFragments);
+      $("#info-section a").each(function() {
+        $(this).attr("href", $(this).attr("href") + 
+        "&movie=" + currentQueryFragments.movie);
+      });
+    }
+
+    // /info/seats/
+    if ($("html#seats").length === 1) {
+      updateFragmentText(currentQueryFragments);
+    }
+
+    // /info/seats/payment/
+    if ($("html#payment").length === 1) {
+      updateFragmentText(currentQueryFragments);
+    }
+
+    $("#payment-form").on("submit", runPaymentFlow);
+    
+    // Seat Selection
+
+    $(".seats a").on("click", function(e) {
+      e.preventDefault();
+      $(this).toggleClass("selected");
+      if ($(".seats a.selected").length > 0) {
+        $("#payment-btn").show();
+        $("#selected-tickets").text($(".seats a.selected").text() + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
+      }
+      else {
+        $("#payment-btn").hide();
+        $("#selected-tickets").text("None");
+      }
+    });
+    
+    $("#payment-btn").on("click", function() {
+      var selected_seats = [];
+      $(".selected").each(function(){
+        var seat = $(this).attr("href").substring(1);
+        selected_seats.push(seat);
+      });
+      if (fullFragment.indexOf("&seats=") >= 0) {
+        fullFragment = fullFragment.substring(0, fullFragment.indexOf("&seats=")); // don't duplicate &seats=
+      }
+      $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
+    });
+  };
+
+  // try to fetch most popular 2018 movies off TMDb if not already in cache
+  if (localStorage.getItem("movie-cache") && localStorage.getItem("genre-cache")) {
+    genres = JSON.parse(localStorage.getItem("genre-cache"));
+    movies = JSON.parse(localStorage.getItem("movie-cache"));
+    console.log("retrieve from local storage", movies);
+    init();
+  }
+  else {
+    $.getJSON("https://api.themoviedb.org/3/genre/movie/list?api_key="+TMDB_API_KEY+"&language=en-US", function(data) {
+      var i;
+      for (i in data.genres) {
+        genres[data.genres[i].id] = data.genres[i].name;
+      }
+      $.getJSON("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-01-01&primary_release_date.lte=2018-05-01&api_key="+TMDB_API_KEY+"&language=en-US&sort_by=popularity.desc&certification_country=US&certification=PG-13&include_adult=false&include_video=false&page=1", function(data) {
+        var copyDates = movies["avengers-infinity-war"].dates;
+        var i, slug;
+        movies = {};
+        for (i in data.results) {
+          // convert title to a url-safe `slug`
+          slug = data.results[i].title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+          movies[slug] = {
+            "title": data.results[i].title,
+            "poster": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path,
+            "backdrop": "https://image.tmdb.org/t/p/original" + data.results[i].backdrop_path,
+            "rating": "PG-13",
+            "genre": data.results[i].genre_ids.map(getGenre).join(", "),
+            "desc": data.results[i].overview,
+            "dates": copyDates
+          };
+        }
+        console.log(movies);
+        localStorage.setItem("movie-cache", JSON.stringify(movies));
+        localStorage.setItem("genre-cache", JSON.stringify(genres));
+        init();
+      }).fail(function() {
+        // failed to get latest movies
+        console.log("failed to get latest movies");
+        init();
+      });
+    }).fail(function() {
+      // failed to get genres
+      console.log("failed to get genres");
+      init();
     });
   }
-
-  // /info/seats/
-  if ($("html#seats").length === 1) {
-    updateFragmentText(currentQueryFragments);
-  }
-
-  // /info/seats/payment/
-  if ($("html#payment").length === 1) {
-    updateFragmentText(currentQueryFragments);
-  }
-
-  $("#payment-form").on("submit", runPaymentFlow);
-  
-  // Seat Selection
-  
-  $('.seats a').on('click', function(e) {
-    e.preventDefault();
-    $(this).toggleClass('selected');
-  });
-  
-  $('#payment-btn').on('click', function() {
-    var selected_seats = [];
-    $('.selected').each(function(){
-      var seat = $(this).attr('href').substring(1);
-      selected_seats.push(seat);
-    });
-    $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
-  });
 });
