@@ -240,7 +240,7 @@ $(function() {
     else {
       console.log("no movies");
     }
-    
+
     $("#payment-btn").hide();
 
     // /info/
@@ -285,6 +285,9 @@ $(function() {
         var seat = $(this).attr("href").substring(1);
         selected_seats.push(seat);
       });
+      if (fullFragment.indexOf("&seats=") >= 0) {
+        fullFragment = fullFragment.substring(0, fullFragment.indexOf("&seats=")); // don't duplicate &seats=
+      }
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
     });
   };
