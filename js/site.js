@@ -256,9 +256,17 @@ $(function() {
     
     // Seat Selection
     
+    $("#payment-btn").hide();
+
     $('.seats a').on('click', function(e) {
       e.preventDefault();
       $(this).toggleClass('selected');
+      if ($(".seats a.selected").length > 0) {
+        $("#payment-btn").show();
+      }
+      else {
+        $("#payment-btn").hide();
+      }
     });
     
     $('#payment-btn').on('click', function() {
