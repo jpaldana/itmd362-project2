@@ -258,9 +258,9 @@ $(function() {
     
     $("#payment-btn").hide();
 
-    $('.seats a').on('click', function(e) {
+    $(".seats a").on("click", function(e) {
       e.preventDefault();
-      $(this).toggleClass('selected');
+      $(this).toggleClass("selected");
       if ($(".seats a.selected").length > 0) {
         $("#payment-btn").show();
       }
@@ -269,10 +269,10 @@ $(function() {
       }
     });
     
-    $('#payment-btn').on('click', function() {
+    $("#payment-btn").on("click", function() {
       var selected_seats = [];
-      $('.selected').each(function(){
-        var seat = $(this).attr('href').substring(1);
+      $(".selected").each(function(){
+        var seat = $(this).attr("href").substring(1);
         selected_seats.push(seat);
       });
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
