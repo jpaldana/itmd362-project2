@@ -130,10 +130,11 @@ $(function() {
   };
 
   var updateSeats = function() {
-    var i, seats = currentQueryFragments.seats.split(",");
+    var i, seats;
     if (typeof currentQueryFragments.seats !== "object") {
       return;
     }
+    seats = currentQueryFragments.seats.split(",");
     $(".movie-seats, #selected-tickets").text("Seats: " + seats.join(", ") + " = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
     // if the user went back to the seats page, pre-select the seats
     for (i in seats) {
@@ -146,10 +147,6 @@ $(function() {
     // replace HTML elements text with correct values
     var details;
     if (typeof currentQueryFragments.movie === "string") {
-      $("#info-section a").each(function() {
-        $(this).attr("href", $(this).attr("href") + 
-        "&movie=" + currentQueryFragments.movie);
-      });
       if (typeof movies[currentQueryFragments.movie] === "object") {
         details = movies[currentQueryFragments.movie];
         $("a.return").each(function() {
@@ -171,6 +168,10 @@ $(function() {
         // reselect seats if returning to /seats/ page; updates text on /payment/
         updateSeats();
       }
+      $("#info-section a").each(function() {
+        $(this).attr("href", $(this).attr("href") + 
+        "&movie=" + currentQueryFragments.movie);
+      });
     }
   };
 
