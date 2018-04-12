@@ -62,6 +62,7 @@ header {
 
 footer {
   margin-top: 1.25em;
+  margin-bottom: 2em;
   color: #98999B;
   text-align: center;
 }
@@ -160,9 +161,15 @@ aside.return li:nth-child(n+3)::before {
   margin-top: 0.5em;
 }
 
-#payment-form, #payment-section {
+#payment-form,
+#payment-section {
   width: 80vw;
   margin: 0 auto;
+  padding-top: 1em;
+}
+
+#payment-form li {
+  margin-bottom: 1em;
 }
 
 #payment-form li input {
@@ -175,12 +182,15 @@ aside.return li:nth-child(n+3)::before {
   box-sizing: border-box;
 }
 
-#payment-form li input[type="submit"] {
+#payment-form li input[type="submit"],
+#seats input[type="button"] {
+  width: 100%;
   font-size: 1em;
   padding: 0.5em;
   background-color: #FF6200;
   color: #FFFFFF;
   text-decoration: none;
+  border: none;
   border-radius: 0.15em;
   margin-bottom: 0.5em;
 }
@@ -194,6 +204,7 @@ h3.movie-seats {
   margin-bottom: 0.5em;
 }
 
+/*
 #seats input[type="button"] {
   float: right;
   margin-right: 0.5em;
@@ -205,6 +216,7 @@ h3.movie-seats {
   border-radius: 0.15em;
   margin-bottom: 0.5em;
 }
+*/
 
 #payment-form p.error {
   padding: 0;
@@ -289,6 +301,10 @@ h3.movie-seats {
 }
 
 /* Seat Selection */
+#seats-section {
+  padding-top: 1em;
+}
+
 #seats figure {
   width: 100vw;
   margin: 0 auto;
