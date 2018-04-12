@@ -111,43 +111,42 @@ $(function() {
     }
   };
 
-  var updateFragmentText = function(fragments) {
+  var updateSeats = function() {
+    var i, seats = currentQueryFragments.seats.split(",");
+    if (typeof currentQueryFragments.seats !== "object") {
+      return;
+    }
+    $(".movie-seats, #selected-tickets").text("Seats: {0} = ${1}".format(seats.join(", "), parseFloat(seats.length * TICKET_PRICE).toFixed(2)));
+    // if the user went back to the seats page, pre-select the seats
+    for (i in seats) {
+      $("a[href='#" + seats[i] + "']").addClass("selected");
+    }
+    $("#payment-btn").show();
+  };
+
+  var updateFragmentText = function() {
     // replace HTML elements text with correct values
-    var details, fullFragment;
-    var date, time, formattedTime, seats;
-    var $dateContainer;
-    var i;
-    if (typeof movies[fragments.movie] === "object") {
-      details = movies[fragments.movie];
-      fullFragment = location.href.substring(
-        location.href.lastIndexOf("/?") + 2
-      );
+    var details;
+    if (typeof movies[currentQueryFragments.movie] === "object") {
+      details = movies[currentQueryFragments.movie];
       $("a.return").each(function() {
         $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
       });
       $(".movie-title").text(details.title);
-      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) === "http" ? details.poster : "../media/posters/" + details.poster); // TODO?
+      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) === "http" ? details.poster : "../media/posters/" + details.poster);
       $(".movie-meta#genre").text(details.genre);
       $(".movie-meta#rating").text(details.rating);
       $("p#plot-summary-text").text(details.desc);
-      
+      if (typeof currentQueryFragments.date === "string") {
+        // update date/time text if it's set
+        $(".movie-date").text(getDisplayDateTime(currentQueryFragments.date, currentQueryFragments.time));
+      }
+
       // replace placeholder dates in /info/
       updateDates(details);
 
-      if (typeof fragments.date === "string") {
-        // sanity
-        $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
-      }
-      if (typeof fragments.seats === "string") {
-        seats = fragments.seats.toUpperCase().split(",");
-        $(".movie-seats").text("Seats: " + seats.join(", ") + " = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
-        // if the user went back to the seats page, preselect the seats
-        for (i in seats) {
-          $("a[href='#" + seats[i] + "']").addClass("selected");
-        }
-        $("#selected-tickets").text($(".seats a.selected").text() + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
-        $("#payment-btn").show();
-      }
+      // reselect seats if returning to /seats/ page; updates text on /payment/
+      updateSeats();
     }
   };
 
