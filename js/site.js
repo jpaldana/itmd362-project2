@@ -162,6 +162,10 @@ $(function() {
     if (validatePaymentFields(form_array)) {
       logEvent("Thank you");
       console.log("Success, pretend to POST data request or something.");
+      $("#payment-form").hide();
+      $("#payment-section").addClass("confirmation");
+      $("#payment-section").prepend("<h2>Order Confirmation<h2>");
+      $("#payment-section").append("<ol><li>"+form_array[0].value+"</li><li>"+form_array[1].value+"</li><li>****"+form_array[3].value.substring(12)+"</ol><h1>Thank you for your purchase</h1>");
     }
     else {
       console.log("Failed. Show an error.");
