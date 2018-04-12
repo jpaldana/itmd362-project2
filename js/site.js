@@ -2,84 +2,11 @@ $(function() {
   // for date
   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  // hardcoded movies for now, ideally would be from an AJAX request
-  var movies = {
-    "avengers-infinity-war": {
-      "title": "Avengers: Infinity War",
-      "poster": "avengers_infinity_war.jpg",
-      "rating": "PG-13",
-      "genre": "Action, Adventure, Fantasy",
-      "desc": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos.",
-      "dates": {
-        "2018-03-01": ["12:00:00", "14:00:00", "16:00:00"],
-        "2018-03-02": ["12:00:00", "14:00:00", "16:00:00"],
-        "2018-03-03": ["12:00:00", "14:00:00", "16:00:00"]
-      }
-    },
-    "blade-runner-2049": {
-      "title": "Blade Runner 2049",
-      "poster": "blade_runner_2049.jpg",
-      "rating": "R",
-      "genre": "Drama, Mystery, Sci-Fi",
-      "desc": "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard.",
-      "dates": {
-        "2018-03-04": ["12:00:00", "15:00:00", "18:00:00"],
-        "2018-03-05": ["12:00:00", "15:00:00", "18:00:00"],
-        "2018-03-06": ["12:00:00", "15:00:00", "18:00:00"]
-      }
-    },
-    "dunkirk": {
-      "title": "Dunkirk",
-      "poster": "dunkirk.jpg",
-      "rating": "PG-13",
-      "genre": "Action, Drama, History",
-      "desc": "Allied soldiers from Belgium, the British Empire and France are surrounded by the German Army, and evacuated during a fierce battle in World War II.",
-      "dates": {
-        "2018-03-07": ["12:00:00", "16:00:00", "20:00:00"],
-        "2018-03-08": ["12:00:00", "16:00:00", "20:00:00"],
-        "2018-03-09": ["12:00:00", "16:00:00", "20:00:00"]
-      }
-    },
-    "inception": {
-      "title": "Inception",
-      "poster": "inception.jpg",
-      "rating": "PG-13",
-      "genre": "Action, Adventure, Sci-Fi",
-      "desc": "A thief, who steals corporate secrets through the use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
-      "dates": {
-        "2018-03-07": ["14:00:00", "18:00:00", "22:00:00"],
-        "2018-03-08": ["14:00:00", "18:00:00", "22:00:00"],
-        "2018-03-09": ["14:00:00", "18:00:00", "22:00:00"]
-      }
-    },
-    "la-la-land": {
-      "title": "La La Land",
-      "poster": "la_la_land.jpg",
-      "rating": "PG-13",
-      "genre": "Comedy, Drama, Music",
-      "desc": "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
-      "dates": {
-        "2018-03-10": ["12:00:00", "16:00:00", "20:00:00"],
-        "2018-03-11": ["12:00:00", "16:00:00", "20:00:00"],
-        "2018-03-12": ["12:00:00", "16:00:00", "20:00:00"]
-      }
-    },
-    "thor-ragnarok": {
-      "title": "Thor Ragnarok",
-      "poster": "thor_ragnarok.jpg",
-      "rating": "PG-13",
-      "genre": "Action, Adventure, Comedy",
-      "desc": "Thor is imprisoned on the planet Sakaar, and must race against time to return to Asgard and stop Ragnarök.",
-      "dates": {
-        "2018-03-10": ["14:00:00", "18:00:00", "22:00:00"],
-        "2018-03-11": ["14:00:00", "18:00:00", "22:00:00"],
-        "2018-03-12": ["14:00:00", "18:00:00", "22:00:00"]
-      }
-    }
-  };
+  var movies = {};
   var genres = {};
   var TMDB_API_KEY = "dd415b0144677fe05f3bebfc458008a5";
   var TICKET_PRICE = 8.50;
+  var CACHE_TIMEOUT = 600 * 1000; // 10 minutes
 
   var getGenre = function(id) {
     return genres[id];
@@ -108,6 +35,9 @@ $(function() {
     return pairs;
   };
 
+  var getDisplayYMD = function(d) {
+    return "" + d.getFullYear() + (d.getMonth() < 10 ? "-0" : "-") + d.getMonth() + (d.getDate() < 10 ? "-0" : "-") + d.getDate();
+  };
   var getDisplayDate = function(date) {
     var d = new Date(date + "T12:00:00Z");
     var formattedDate = days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
@@ -290,6 +220,22 @@ $(function() {
   };
 
   // try to fetch most popular 2018 movies off TMDb if not already in cache
+  if (localStorage.getItem("time-cache")) {
+    if (new Date().getTime() - parseFloat(localStorage.getItem("time-cache")) > CACHE_TIMEOUT) {
+      console.log(new Date().getTime() - parseFloat(localStorage.getItem("time-cache")));
+      localStorage.removeItem("movie-cache");
+      localStorage.removeItem("genre-cache");
+      localStorage.removeItem("time-cache");
+      console.log("flushing cache");
+    }
+    else {
+      console.log("using cache");
+    }
+  }
+  else {
+    localStorage.removeItem("movie-cache");
+    localStorage.removeItem("genre-cache");
+  }
   if (localStorage.getItem("movie-cache") && localStorage.getItem("genre-cache")) {
     genres = JSON.parse(localStorage.getItem("genre-cache"));
     movies = JSON.parse(localStorage.getItem("movie-cache"));
@@ -303,8 +249,13 @@ $(function() {
         genres[data.genres[i].id] = data.genres[i].name;
       }
       $.getJSON("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-01-01&primary_release_date.lte=2018-05-01&api_key="+TMDB_API_KEY+"&language=en-US&sort_by=popularity.desc&certification_country=US&certification=PG-13&include_adult=false&include_video=false&page=1", function(data) {
-        var copyDates = movies["avengers-infinity-war"].dates;
-        var i, slug;
+        var i, d = new Date(), s, g = ["12:00:00", "14:00:00", "16:00:00"], slug;
+        var genDates = {};
+        for (i = 0; i < 7; i++) {
+          s = getDisplayYMD(d);
+          genDates[s] = g;
+          d.setDate(d.getDate()+1);
+        }
         movies = {};
         for (i in data.results) {
           // convert title to a url-safe `slug`
@@ -316,12 +267,13 @@ $(function() {
             "rating": "PG-13",
             "genre": data.results[i].genre_ids.map(getGenre).join(", "),
             "desc": data.results[i].overview,
-            "dates": copyDates
+            "dates": genDates
           };
         }
         console.log(movies);
         localStorage.setItem("movie-cache", JSON.stringify(movies));
         localStorage.setItem("genre-cache", JSON.stringify(genres));
+        localStorage.setItem("time-cache", new Date().getTime());
         init();
       }).fail(function() {
         // failed to get latest movies
