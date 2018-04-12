@@ -145,26 +145,32 @@ $(function() {
   var updateFragmentText = function() {
     // replace HTML elements text with correct values
     var details;
-    if (typeof movies[currentQueryFragments.movie] === "object") {
-      details = movies[currentQueryFragments.movie];
-      $("a.return").each(function() {
-        $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
+    if (typeof currentQueryFragments.movie === "string") {
+      $("#info-section a").each(function() {
+        $(this).attr("href", $(this).attr("href") + 
+        "&movie=" + currentQueryFragments.movie);
       });
-      $(".movie-title").text(details.title);
-      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) === "http" ? details.poster : "../media/posters/" + details.poster);
-      $(".movie-meta#genre").text(details.genre);
-      $(".movie-meta#rating").text(details.rating);
-      $("p#plot-summary-text").text(details.desc);
-      if (typeof currentQueryFragments.date === "string") {
-        // update date/time text if it's set
-        $(".movie-date").text(getDisplayDateTime(currentQueryFragments.date, currentQueryFragments.time));
+      if (typeof movies[currentQueryFragments.movie] === "object") {
+        details = movies[currentQueryFragments.movie];
+        $("a.return").each(function() {
+          $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
+        });
+        $(".movie-title").text(details.title);
+        $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) === "http" ? details.poster : "../media/posters/" + details.poster);
+        $(".movie-meta#genre").text(details.genre);
+        $(".movie-meta#rating").text(details.rating);
+        $("p#plot-summary-text").text(details.desc);
+        if (typeof currentQueryFragments.date === "string") {
+          // update date/time text if it's set
+          $(".movie-date").text(getDisplayDateTime(currentQueryFragments.date, currentQueryFragments.time));
+        }
+  
+        // replace placeholder dates in /info/
+        updateDates(details);
+  
+        // reselect seats if returning to /seats/ page; updates text on /payment/
+        updateSeats();
       }
-
-      // replace placeholder dates in /info/
-      updateDates(details);
-
-      // reselect seats if returning to /seats/ page; updates text on /payment/
-      updateSeats();
     }
   };
 
@@ -174,23 +180,11 @@ $(function() {
   );
 
   var init = function() {
-    var i;
-    
-    updateTmdbData();
-
     $("#payment-btn").hide();
-    updateFragmentText(currentQueryFragments);
-
-    // /info/
-    if ($("html#info").length === 1) {
-      $("#info-section a").each(function() {
-        $(this).attr("href", $(this).attr("href") + 
-        "&movie=" + currentQueryFragments.movie);
-      });
-    }
-
     $("#payment-form").on("submit", runPaymentFlow);
-    
+    updateTmdbData();
+    updateFragmentText();
+
     // Seat Selection
 
     $(".seats a").on("click", function(e) {
