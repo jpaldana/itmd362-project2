@@ -153,6 +153,10 @@ aside.return li:nth-child(n+3)::before {
   font-size: 0.8em;
 }
 
+#payment-form li {
+  margin-bottom: 1em;
+}
+
 #info .card ol li {
   margin-bottom: 0.5em;
 }
@@ -166,10 +170,6 @@ aside.return li:nth-child(n+3)::before {
   width: 80vw;
   margin: 0 auto;
   padding-top: 1em;
-}
-
-#payment-form li {
-  margin-bottom: 1em;
 }
 
 #payment-form li input {
