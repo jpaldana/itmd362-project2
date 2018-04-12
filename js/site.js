@@ -6,7 +6,7 @@ $(function() {
   var genres = {};
   var TMDB_API_KEY = "dd415b0144677fe05f3bebfc458008a5";
   var TICKET_PRICE = 8.50;
-  var CACHE_TIMEOUT = 600 * 1000; // 10 minutes
+  var CACHE_TIMEOUT = 3600 * 1000; // 60 minutes
 
   var getGenre = function(id) {
     return genres[id];
@@ -260,6 +260,12 @@ $(function() {
         for (i in data.results) {
           // convert title to a url-safe `slug`
           slug = data.results[i].title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+          $.getJSON("https://api.themoviedb.org/3/movie/" + data.results[i].id + "?api_key="+TMDB_API_KEY+"&append_to_response=releases,videos", function(data) {
+            slug = data.title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+            movies[slug].info = data;
+            localStorage.setItem("movie-cache", JSON.stringify(movies));
+            console.log("got deferred movie info for", slug);
+          });
           movies[slug] = {
             "title": data.results[i].title,
             "poster": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path,
@@ -267,7 +273,8 @@ $(function() {
             "rating": "PG-13",
             "genre": data.results[i].genre_ids.map(getGenre).join(", "),
             "desc": data.results[i].overview,
-            "dates": genDates
+            "dates": genDates,
+            "info": false
           };
         }
         console.log(movies);
