@@ -367,6 +367,7 @@ section.confirmation {
 
 section.confirmation h2.movie-title {
   text-align: left;
+  font-size: 1em;
 }
 
 /* State Styles */
