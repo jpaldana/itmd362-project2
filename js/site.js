@@ -234,7 +234,7 @@ $(function() {
       }
       // replace background image with backdrop if movie is selected
       if (typeof currentQueryFragments.movie === "string") {
-        $("html").css("background-image", "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
+        $("html").css("background-image", "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.75) 100%), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
       }
     }
     else {
