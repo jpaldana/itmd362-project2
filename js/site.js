@@ -82,6 +82,7 @@ $(function() {
   };
   var genres = {};
   var TMDB_API_KEY = "dd415b0144677fe05f3bebfc458008a5";
+  var TICKET_PRICE = 8.50;
 
   var getGenre = function(id) {
     return genres[id];
@@ -173,7 +174,7 @@ $(function() {
   var updateFragmentText = function(fragments) {
     // replace HTML elements text with correct values
     var details, fullFragment;
-    var date, time, formattedTime;
+    var date, time, formattedTime, seats;
     var $timeContainer, $dateContainer;
     var i;
     if (typeof movies[fragments.movie] === "object") {
@@ -206,7 +207,14 @@ $(function() {
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
       }
       if (typeof fragments.seats === "string") {
-        $(".movie-seats").text("Seats: " + fragments.seats);
+        seats = fragments.seats.toUpperCase().split(",");
+        $(".movie-seats").text("Seats: " + seats.join(", ") + " = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
+        // if the user went back to the seats page, preselect the seats
+        for (i in seats) {
+          $("a[href='#" + seats[i] + "']").addClass("selected");
+        }
+        $("#selected-tickets").text($(".seats a.selected").text() + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
+        $("#payment-btn").show();
       }
     }
   };
@@ -232,6 +240,8 @@ $(function() {
     else {
       console.log("no movies");
     }
+    
+    $("#payment-btn").hide();
 
     // /info/
     if ($("html#info").length === 1) {
@@ -255,17 +265,17 @@ $(function() {
     $("#payment-form").on("submit", runPaymentFlow);
     
     // Seat Selection
-    
-    $("#payment-btn").hide();
 
     $(".seats a").on("click", function(e) {
       e.preventDefault();
       $(this).toggleClass("selected");
       if ($(".seats a.selected").length > 0) {
         $("#payment-btn").show();
+        $("#selected-tickets").text($(".seats a.selected").text() + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
       }
       else {
         $("#payment-btn").hide();
+        $("#selected-tickets").text("None");
       }
     });
     
