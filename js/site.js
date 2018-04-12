@@ -36,7 +36,7 @@ $(function() {
   };
 
   var getDisplayYMD = function(d) {
-    return "" + d.getFullYear() + (d.getMonth() < 10 ? "-0" : "-") + d.getMonth() + (d.getDate() < 10 ? "-0" : "-") + d.getDate();
+    return d.getFullYear() + (d.getMonth() < 10 ? "-0" : "-") + d.getMonth() + (d.getDate() < 10 ? "-0" : "-") + d.getDate();
   };
   var getDisplayDate = function(date) {
     var d = new Date(date + "T12:00:00Z");
@@ -123,7 +123,7 @@ $(function() {
       $timeContainer = $("<ol>");
       for (i in details.dates[date]) {
         time = details.dates[date][i];
-        $timeContainer.append("<li><a href='seats/?time={0}&date={1}'>{2}</a></li>".format(time, date, getDisplayTime(time)));
+        $timeContainer.append("<li><a href='seats/?time=" + time + "&date=" + date + "'>" + getDisplayTime(time) + "</a></li>");
       }
       $("#time > ol").append($("<li>").text(getDisplayDate(date)).append($timeContainer));
     }
@@ -134,7 +134,7 @@ $(function() {
     if (typeof currentQueryFragments.seats !== "object") {
       return;
     }
-    $(".movie-seats, #selected-tickets").text("Seats: {0} = ${1}".format(seats.join(", "), parseFloat(seats.length * TICKET_PRICE).toFixed(2)));
+    $(".movie-seats, #selected-tickets").text("Seats: " + seats.join(", ") + " = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
     // if the user went back to the seats page, pre-select the seats
     for (i in seats) {
       $("a[href='#" + seats[i] + "']").addClass("selected");
@@ -186,7 +186,6 @@ $(function() {
     updateFragmentText();
 
     // Seat Selection
-
     $(".seats a").on("click", function(e) {
       e.preventDefault();
       $(this).toggleClass("selected");
@@ -203,8 +202,7 @@ $(function() {
     $("#payment-btn").on("click", function() {
       var selected_seats = [];
       $(".selected").each(function(){
-        var seat = $(this).attr("href").substring(1);
-        selected_seats.push(seat);
+        selected_seats.push($(this).attr("href").substring(1));
       });
       if (fullFragment.indexOf("&seats=") >= 0) {
         fullFragment = fullFragment.substring(0, fullFragment.indexOf("&seats=")); // don't duplicate &seats=
@@ -286,19 +284,5 @@ $(function() {
       console.log("failed to get genres");
       init();
     });
-  }
-
-  // Add a sprintf()-like JS call
-  // https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
-  if (!String.prototype.format) {
-    String.prototype.format = function() {
-      var args = arguments;
-      return this.replace(/{(\d+)}/g, function(match, number) { 
-        return typeof args[number] !== 'undefined'
-          ? args[number]
-          : match
-        ;
-      });
-    };
   }
 });
