@@ -269,7 +269,7 @@ $(function() {
           movies[slug] = {
             "title": data.results[i].title,
             "poster": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path,
-            "backdrop": "https://image.tmdb.org/t/p/original" + data.results[i].backdrop_path,
+            "backdrop": "https://image.tmdb.org/t/p/w1280" + data.results[i].backdrop_path,
             "rating": "PG-13",
             "genre": data.results[i].genre_ids.map(getGenre).join(", "),
             "desc": data.results[i].overview,
