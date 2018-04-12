@@ -98,6 +98,24 @@ $(function() {
     }
   };
 
+  var updateTmdbData = function() {
+    var i;
+    if (Object.keys(genres).length > 0) {
+      // replace movie posters on home page if tvdb call was successful
+      $("#movies ul").empty();
+      for (i in movies) {
+        $("#movies ul").append("<li><a href='info/?movie=" + i + "'><figure><img class='poster' src='" + movies[i].poster + "' alt='Poster of " + movies[i].title + "' /><figcaption>" + movies[i].title + "</figcaption></figure></a></li>");
+      }
+      // replace background image with backdrop if movie is selected
+      if (typeof currentQueryFragments.movie === "string") {
+        $("html").css("background-image", "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.75) 100%), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
+      }
+    }
+    else {
+      console.log("no movies to load");
+    }
+  };
+
   var updateDates = function(details) {
     var i, date, time, $timeContainer;
     $("#time ol").empty();
@@ -157,40 +175,18 @@ $(function() {
 
   var init = function() {
     var i;
-    if (Object.keys(genres).length > 0) {
-      // replace movie posters on home page if tvdb call was successful
-      $("#movies ul").empty();
-      for (i in movies) {
-        $("#movies ul").append("<li><a href='info/?movie=" + i + "'><figure><img class='poster' src='" + movies[i].poster + "' alt='Poster of " + movies[i].title + "' /><figcaption>" + movies[i].title + "</figcaption></figure></a></li>");
-      }
-      // replace background image with backdrop if movie is selected
-      if (typeof currentQueryFragments.movie === "string") {
-        $("html").css("background-image", "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.75) 100%), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
-      }
-    }
-    else {
-      console.log("no movies");
-    }
+    
+    updateTmdbData();
 
     $("#payment-btn").hide();
+    updateFragmentText(currentQueryFragments);
 
     // /info/
     if ($("html#info").length === 1) {
-      updateFragmentText(currentQueryFragments);
       $("#info-section a").each(function() {
         $(this).attr("href", $(this).attr("href") + 
         "&movie=" + currentQueryFragments.movie);
       });
-    }
-
-    // /info/seats/
-    if ($("html#seats").length === 1) {
-      updateFragmentText(currentQueryFragments);
-    }
-
-    // /info/seats/payment/
-    if ($("html#payment").length === 1) {
-      updateFragmentText(currentQueryFragments);
     }
 
     $("#payment-form").on("submit", runPaymentFlow);
