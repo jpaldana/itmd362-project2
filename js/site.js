@@ -1,3 +1,6 @@
+/* https://github.com/madmurphy/cookies.js (GPL3) */
+var docCookies={getItem:function(e){return e?decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null:null},setItem:function(e,o,n,t,r,c){if(!e||/^(?:expires|max\-age|path|domain|secure)$/i.test(e))return!1;var s="";if(n)switch(n.constructor){case Number:s=n===1/0?"; expires=Fri, 31 Dec 9999 23:59:59 GMT":"; max-age="+n;break;case String:s="; expires="+n;break;case Date:s="; expires="+n.toUTCString()}return document.cookie=encodeURIComponent(e)+"="+encodeURIComponent(o)+s+(r?"; domain="+r:"")+(t?"; path="+t:"")+(c?"; secure":""),!0},removeItem:function(e,o,n){return this.hasItem(e)?(document.cookie=encodeURIComponent(e)+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"+(n?"; domain="+n:"")+(o?"; path="+o:""),!0):!1},hasItem:function(e){return!e||/^(?:expires|max\-age|path|domain|secure)$/i.test(e)?!1:new RegExp("(?:^|;\\s*)"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=").test(document.cookie)},keys:function(){for(var e=document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g,"").split(/\s*(?:\=[^;]*)?;\s*/),o=e.length,n=0;o>n;n++)e[n]=decodeURIComponent(e[n]);return e}};"undefined"!=typeof module&&"undefined"!=typeof module.exports&&(module.exports=docCookies); // eslint-disable-line
+
 $(function() {
   // for date
   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -77,6 +80,11 @@ $(function() {
       }
     }
   };
+  var genres = {};
+
+  var getGenre = function(id) {
+    return genres[id];
+  }
 
   var logEvent = function(message, input) {
     console.log(message);
@@ -207,40 +215,84 @@ $(function() {
     location.href.lastIndexOf("/?") + 2
   );
 
-  // /info/
-  if ($("html#info").length === 1) {
-    updateFragmentText(currentQueryFragments);
-    $("#info-section a").each(function() {
-      $(this).attr("href", $(this).attr("href") + 
-      "&movie=" + currentQueryFragments.movie);
+  var init = function() {
+    // /info/
+    if ($("html#info").length === 1) {
+      updateFragmentText(currentQueryFragments);
+      $("#info-section a").each(function() {
+        $(this).attr("href", $(this).attr("href") + 
+        "&movie=" + currentQueryFragments.movie);
+      });
+    }
+
+    // /info/seats/
+    if ($("html#seats").length === 1) {
+      updateFragmentText(currentQueryFragments);
+    }
+
+    // /info/seats/payment/
+    if ($("html#payment").length === 1) {
+      updateFragmentText(currentQueryFragments);
+    }
+
+    $("#payment-form").on("submit", runPaymentFlow);
+    
+    // Seat Selection
+    
+    $('.seats a').on('click', function(e) {
+      e.preventDefault();
+      $(this).toggleClass('selected');
     });
-  }
-
-  // /info/seats/
-  if ($("html#seats").length === 1) {
-    updateFragmentText(currentQueryFragments);
-  }
-
-  // /info/seats/payment/
-  if ($("html#payment").length === 1) {
-    updateFragmentText(currentQueryFragments);
-  }
-
-  $("#payment-form").on("submit", runPaymentFlow);
-  
-  // Seat Selection
-  
-  $('.seats a').on('click', function(e) {
-    e.preventDefault();
-    $(this).toggleClass('selected');
-  });
-  
-  $('#payment-btn').on('click', function() {
-    var selected_seats = [];
-    $('.selected').each(function(){
-      var seat = $(this).attr('href').substring(1);
-      selected_seats.push(seat);
+    
+    $('#payment-btn').on('click', function() {
+      var selected_seats = [];
+      $('.selected').each(function(){
+        var seat = $(this).attr('href').substring(1);
+        selected_seats.push(seat);
+      });
+      $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
     });
-    $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
-  });
+  };
+
+  // try to fetch most popular 2018 movies off TMDb if not already in cache
+  if (localStorage.getItem("movie-cache")) {
+    movies = JSON.parse(localStorage.getItem("movie-cache"));
+    console.log("retrieve from local storage", movies);
+    init();
+  }
+  else {
+    $.getJSON("https://api.themoviedb.org/3/genre/movie/list?api_key=dd415b0144677fe05f3bebfc458008a5&language=en-US", function(data) {
+      var i;
+      for (i in data.genres) {
+        genres[data.genres[i].id] = data.genres[i].name;
+      }
+      $.getJSON("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-01-01&primary_release_date.lte=2018-05-01&api_key=dd415b0144677fe05f3bebfc458008a5&language=en-US&sort_by=popularity.desc&certification_country=US&certification=PG-13&include_adult=false&include_video=false&page=1", function(data) {
+        var copyDates = movies["avengers-infinity-war"].dates;
+        var i, slug;
+        movies = {};
+        for (i in data.results) {
+          // convert title to a url-safe `slug`
+          slug = data.results[i].title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+          movies[slug] = {
+            "title": data.results[i].title,
+            "poster": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path,
+            "backdrop": "https://image.tmdb.org/t/p/w500" + data.results[i].backdrop_path,
+            "rating": "PG-13",
+            "genre": data.results[i].genre_ids.map(getGenre).join(", "),
+            "desc": data.results[i].overview,
+            "dates": copyDates
+          };
+        }
+        console.log(movies);
+        localStorage.setItem("movie-cache", JSON.stringify(movies));
+      }).fail(function() {
+        // failed to get latest movies
+        console.log("failed to get latest movies");
+      });
+    }).fail(function() {
+      // failed to get genres
+      console.log("failed to get genres");
+    });
+    init();
+  }
 });
