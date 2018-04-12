@@ -98,11 +98,24 @@ $(function() {
     }
   };
 
+  var updateDates = function(details) {
+    var i, date, time, $timeContainer;
+    $("#time ol").empty();
+    for (date in details.dates) {
+      $timeContainer = $("<ol>");
+      for (i in details.dates[date]) {
+        time = details.dates[date][i];
+        $timeContainer.append("<li><a href='seats/?time={0}&date={1}'>{2}</a></li>".format(time, date, getDisplayTime(time)));
+      }
+      $("#time > ol").append($("<li>").text(getDisplayDate(date)).append($timeContainer));
+    }
+  };
+
   var updateFragmentText = function(fragments) {
     // replace HTML elements text with correct values
     var details, fullFragment;
     var date, time, formattedTime, seats;
-    var $timeContainer, $dateContainer;
+    var $dateContainer;
     var i;
     if (typeof movies[fragments.movie] === "object") {
       details = movies[fragments.movie];
@@ -117,18 +130,10 @@ $(function() {
       $(".movie-meta#genre").text(details.genre);
       $(".movie-meta#rating").text(details.rating);
       $("p#plot-summary-text").text(details.desc);
-      // replace placeholder dates
-      $("#time ol").empty();
-      for (date in details.dates) {
-        $timeContainer = $("<ol>");
-        for (i in details.dates[date]) {
-          time = details.dates[date][i];
-          formattedTime = getDisplayTime(time);
-          $timeContainer.append("<li><a href='seats/?time=" + time + "&date=" + date + "'>" + formattedTime + "</a></li>");
-        }
-        $dateContainer = $("<li>").text(getDisplayDate(date)).append($timeContainer);
-        $("#time > ol").append($dateContainer);
-      }
+      
+      // replace placeholder dates in /info/
+      updateDates(details);
+
       if (typeof fragments.date === "string") {
         // sanity
         $(".movie-date").text(getDisplayDateTime(fragments.date, fragments.time));
