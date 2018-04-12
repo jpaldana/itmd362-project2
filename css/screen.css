@@ -94,6 +94,10 @@ aside.return li:nth-child(n+3)::before {
   margin: 0 0.5em 0 0.25em;
 }
 
+a.tmdb {
+  color: #01d277;
+}
+
 /* Layout Styles */
 
 .poster {
