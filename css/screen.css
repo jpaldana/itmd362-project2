@@ -389,15 +389,19 @@ h3.movie-seats {
 
 @media only screen and (min-width: 1280px) {
 
-  #landing {
+  #landing,
+  #movies,
+  main section {
     padding-left: 20%;
     padding-right: 20%;
   }
 
+  /*
   #movies {
     padding-left: 20%;
     padding-right: 20%;
   }
+  */
 
   .movie-poster {
     max-width: 12.5em;
