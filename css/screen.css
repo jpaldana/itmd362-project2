@@ -343,11 +343,11 @@ h3.movie-seats {
     width: 3em; /*60/20 = 3*/
     padding: 1em 0; /*20/20 = 3em*/
   }
-  
+
   #info ol ol {
     display: flex;
   }
-  
+
   #info .card ol li {
     margin-right: 1em;
   }
@@ -414,11 +414,11 @@ h3.movie-seats {
   .poster {
     max-width: 10em;
   }
-  
+
   #payment-form, #payment-section {
-  width: 50vw;
-  margin: 0 auto;
-}
+    width: 50vw;
+    margin: 0 auto;
+  }
 
 }
 

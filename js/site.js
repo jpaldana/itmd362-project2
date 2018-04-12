@@ -85,7 +85,7 @@ $(function() {
 
   var getGenre = function(id) {
     return genres[id];
-  }
+  };
 
   var logEvent = function(message, input) {
     console.log(message);
@@ -185,7 +185,7 @@ $(function() {
         $(this).attr("href", $(this).attr("href") + "?" + fullFragment);
       });
       $(".movie-title").text(details.title);
-      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) == "http" ? details.poster : "../media/posters/" + details.poster); // TODO?
+      $(".movie-poster#poster").attr("src", details.poster.substring(0, 4) === "http" ? details.poster : "../media/posters/" + details.poster); // TODO?
       $(".movie-meta#genre").text(details.genre);
       $(".movie-meta#rating").text(details.rating);
       $("p#plot-summary-text").text(details.desc);
@@ -225,7 +225,7 @@ $(function() {
         $("#movies ul").append("<li><a href='info/?movie=" + i + "'><figure><img class='poster' src='" + movies[i].poster + "' alt='Poster of " + movies[i].title + "' /><figcaption>" + movies[i].title + "</figcaption></figure></a></li>");
       }
       // replace background image with backdrop if movie is selected
-      if (typeof currentQueryFragments.movie == "string") {
+      if (typeof currentQueryFragments.movie === "string") {
         $("html").css("background-image", "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(" + movies[currentQueryFragments.movie].backdrop + ")").addClass("movie-backdrop");
       }
     }
@@ -290,7 +290,7 @@ $(function() {
         movies = {};
         for (i in data.results) {
           // convert title to a url-safe `slug`
-          slug = data.results[i].title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+          slug = data.results[i].title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
           movies[slug] = {
             "title": data.results[i].title,
             "poster": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path,
