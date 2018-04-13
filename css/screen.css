@@ -109,6 +109,25 @@ aside.return li:nth-child(n+3)::before {
   color: #FF6200;
 }
 
+aside.modal-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 20%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+section.modal {
+  background-color: #262626;
+  color: white;
+  padding: 1em;
+}
+section.modal section#about-section {
+  width: 100%;
+}
+
 /* Layout Styles */
 
 .poster {
