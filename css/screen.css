@@ -7,9 +7,13 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 /* stylelint-enable */
 
 /* Base Styles */
-html, .stylelint {
-  font-size: 1.25em; /* 20 / 16 = 1.25 */
-  line-height: 1.2em; /* 24 / 20 = 1.2 */
+
+html,
+.stylelint {
+  font-size: 1.25em;
+  /* 20 / 16 = 1.25 */
+  line-height: 1.2em;
+  /* 24 / 20 = 1.2 */
   font-family: Helvetica, sans-serif;
   background-image: url(../media/gplaypattern_@2X.png);
   background-repeat: repeat;
@@ -23,19 +27,6 @@ html.movie-backdrop {
   color: white;
 }
 
-/*
-html.movie-backdrop:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(to bottom right, #000000, #222222);
-  opacity: 0.6;
-}
-*/
-
 img,
 video,
 audio {
@@ -44,13 +35,17 @@ audio {
 }
 
 h1 {
-  font-size: 1.5em; /* 30 / 20 = 1.5 */
-  line-height: 1.6em; /* 48 / 30 = 1.6 */
+  font-size: 1.5em;
+  /* 30 / 20 = 1.5 */
+  line-height: 1.6em;
+  /* 48 / 30 = 1.6 */
 }
 
 h2 {
-  font-size: 1.25em; /* 25 / 20 = 1.25 */
-  line-height: 1.44em; /* 36 / 25 = 1.44 */
+  font-size: 1.25em;
+  /* 25 / 20 = 1.25 */
+  line-height: 1.44em;
+  /* 36 / 25 = 1.44 */
 }
 
 header {
@@ -88,17 +83,21 @@ aside.return {
   padding: 1em 1em;
   border-bottom: 0.5em #FF6200 solid;
 }
+
 aside.return a {
   color: white;
   text-decoration-color: rgb(156, 60, 0);
 }
+
 aside.return li {
   color: #FF6200;
   display: inline-block;
 }
+
 aside.return li:nth-child(1) {
   margin: 0 0.5em;
 }
+
 aside.return li:nth-child(n+3)::before {
   content: "\2039";
   margin: 0 0.5em 0 0.25em;
@@ -124,6 +123,7 @@ section.modal {
   color: white;
   padding: 1em;
 }
+
 section.modal section#about-section {
   width: 100%;
 }
@@ -135,9 +135,9 @@ section.modal section#about-section {
   max-width: 8em;
   border-radius: 0.25em;
   border: 0.05em #FF6200 solid;
-  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
   transition: 0.5s ease;
 }
 
@@ -151,9 +151,9 @@ section.modal section#about-section {
   margin-bottom: 1em;
   max-width: 11em;
   border-radius: 0.15em;
-  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
   transition: 0.5s ease;
 }
 
@@ -170,9 +170,9 @@ section.modal section#about-section {
   color: #FFF;
   border-radius: 0.1em;
   padding: 1em;
-  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
   margin-bottom: 1.333em;
 }
 
@@ -230,9 +230,15 @@ section.modal section#about-section {
   margin-bottom: 0.5em;
 }
 
+
 #seats #payment-btn {
   display: block;
   text-align: center;
+}
+
+#about-section h2,
+#about-section p {
+  margin-bottom: 0.5em;
 }
 
 #payment-form li p {
@@ -247,20 +253,6 @@ h3.movie-seats {
 #payment-btn {
   margin: auto;
 }
-
-/*
-#seats input[type="button"] {
-  float: right;
-  margin-right: 0.5em;
-  font-size: 1em;
-  padding: 0.5em;
-  background-color: #FF6200;
-  color: #FFFFFF;
-  text-decoration: none;
-  border-radius: 0.15em;
-  margin-bottom: 0.5em;
-}
-*/
 
 #payment-form p.error {
   padding: 0;
@@ -282,10 +274,6 @@ h3.movie-seats {
   margin: auto;
 }
 
-#about-section h2, #about-section p {
-  margin-bottom: 0.5em;
-}
-
 /* Modular Styles */
 
 #yt-trailer-video {
@@ -304,7 +292,8 @@ h3.movie-seats {
   border-bottom: 0.5em #FF6200 solid;
 }
 
-#landing h1, #landing h2 {
+#landing h1,
+#landing h2 {
   vertical-align: middle;
 }
 
@@ -315,8 +304,10 @@ h3.movie-seats {
 }
 
 #movies {
-  padding-left: 0.6em; /* 12 / 20 = 0.6 */
-  padding-right: 0.6em; /* 12 / 20 = 0.6 */
+  padding-left: 0.6em;
+  /* 12 / 20 = 0.6 */
+  padding-right: 0.6em;
+  /* 12 / 20 = 0.6 */
   padding-top: 1em;
 }
 
@@ -338,8 +329,10 @@ h3.movie-seats {
 }
 
 #info-section {
-  padding-left: 0.6em; /* 12 / 20 = 0.6 */
-  padding-right: 0.6em; /* 12 / 20 = 0.6 */
+  padding-left: 0.6em;
+  /* 12 / 20 = 0.6 */
+  padding-right: 0.6em;
+  /* 12 / 20 = 0.6 */
   padding-top: 1em;
 }
 
@@ -349,9 +342,9 @@ h3.movie-seats {
   color: #FFFFFF;
   text-decoration: none;
   border-radius: 0.15em;
-  -webkit-box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0,0,0,0.4);
-  -moz-box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0,0,0,0.4);
-  box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0,0,0,0.4);
+  -webkit-box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0, 0, 0, 0.4);
+  box-shadow: 20.1em 20.1em 20.15em -0.85em rgba(0, 0, 0, 0.4);
 }
 
 #movie-info {
@@ -359,6 +352,7 @@ h3.movie-seats {
 }
 
 /* Seat Selection */
+
 #seats-section {
   padding-top: 1em;
   margin: auto;
@@ -420,9 +414,9 @@ section.confirmation {
   color: #FFF;
   border-radius: 0.1em;
   padding: 1em;
-  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
-  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0, 0, 0, 0.75);
 }
 
 section.confirmation h2.movie-title {
@@ -445,12 +439,15 @@ section.confirmation h2.movie-title {
 
   #seats figure,
   #seats-section {
-    width: 26em; /* 520/20 = */
+    width: 26em;
+    /* 520/20 = */
   }
 
   #seats .row .seats a {
-    width: 3em; /*60/20 = 3*/
-    padding: 1em 0; /*20/20 = 3em*/
+    width: 3em;
+    /*60/20 = 3*/
+    padding: 1em 0;
+    /*20/20 = 3em*/
   }
 
   #info ol ol {
@@ -477,7 +474,7 @@ section.confirmation h2.movie-title {
     float: none;
     margin: auto;
   }
-  
+
   #header > a {
     position: absolute;
     right: 1.5em;
@@ -490,7 +487,7 @@ section.confirmation h2.movie-title {
     border: none;
     border-radius: 0.15em;
     margin-bottom: 0.5em;
-}
+  }
 
 }
 
@@ -527,14 +524,15 @@ section.confirmation h2.movie-title {
     max-width: 10em;
   }
 
-  #payment-form, #payment-section {
+  #payment-form,
+  #payment-section {
     width: 50vw;
   }
-  
+
   #about-section {
-  width: 50vw;
-  margin: auto;
-}
+    width: 50vw;
+    margin: auto;
+  }
 
 }
 
