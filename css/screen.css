@@ -218,7 +218,7 @@ section.modal section#about-section {
 }
 
 #payment-form li input[type="submit"],
-#seats input[type="button"] {
+#seats #payment-btn {
   width: 100%;
   font-size: 1em;
   padding: 0.5em;
@@ -228,6 +228,11 @@ section.modal section#about-section {
   border: none;
   border-radius: 0.15em;
   margin-bottom: 0.5em;
+}
+
+#seats #payment-btn {
+  display: block;
+  text-align: center;
 }
 
 #payment-form li p {
