@@ -72,6 +72,11 @@ footer {
   text-align: center;
 }
 
+footer a {
+  color: #FF6200;
+  text-decoration: none;
+}
+
 strong {
   font-weight: bold;
 }
@@ -99,10 +104,6 @@ aside.return li:nth-child(n+3)::before {
   margin: 0 0.5em 0 0.25em;
 }
 
-a.tmdb {
-  color: #262626;
-  text-decoration: none;
-}
 
 #header > a {
   color: #FF6200;
