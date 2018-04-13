@@ -150,7 +150,7 @@ $(function() {
 
   var updateFragmentText = function() {
     // replace HTML elements text with correct values
-    var details;
+    var details, id;
     $("a[href$='about.html']").on("click", function(e) {
       var modal_container = $("<aside>").addClass("modal-container");
       var modal = $("<section>").addClass("modal");
@@ -179,6 +179,12 @@ $(function() {
         $(".movie-meta#genre").text(details.genre);
         $(".movie-meta#rating").text(details.rating);
         $("p#plot-summary-text").text(details.desc);
+        if (typeof details.info.videos.results[0] === "object" && typeof videojs !== "undefined") {
+          id = details.info.videos.results[0].key;
+          // videojs is included
+          videojs("#yt-trailer-video").src({type: 'video/youtube', src: 'https://www.youtube.com/watch?v='+id}); // eslint-disable-line
+        }
+        
         if (typeof currentQueryFragments.date === "string") {
           // update date/time text if it's set
           $(".movie-date").text(getDisplayDateTime(currentQueryFragments.date, currentQueryFragments.time));
