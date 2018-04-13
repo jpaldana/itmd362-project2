@@ -104,6 +104,10 @@ a.tmdb {
   text-decoration: none;
 }
 
+#header > a {
+  color: #FF6200;
+}
+
 /* Layout Styles */
 
 .poster {
@@ -246,6 +250,15 @@ h3.movie-seats {
   border-bottom: solid 0.2em red;
   border-top: solid 0.2em red;
   box-sizing: border-box;
+}
+
+#about-section {
+  width: 80vw;
+  margin: auto;
+}
+
+#about-section h2, #about-section p {
+  margin-bottom: 0.5em;
 }
 
 /* Modular Styles */
@@ -439,6 +452,20 @@ section.confirmation h2.movie-title {
     float: none;
     margin: auto;
   }
+  
+  #header > a {
+    position: absolute;
+    right: 1.5em;
+    top: 0.7em;
+    font-size: 1em;
+    padding: 0.5em;
+    background-color: #FF6200;
+    color: #FFFFFF;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.15em;
+    margin-bottom: 0.5em;
+}
 
 }
 
@@ -478,6 +505,11 @@ section.confirmation h2.movie-title {
   #payment-form, #payment-section {
     width: 50vw;
   }
+  
+  #about-section {
+  width: 50vw;
+  margin: auto;
+}
 
 }
 
