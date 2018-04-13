@@ -244,6 +244,20 @@ h3.movie-seats {
   box-sizing: border-box;
 }
 
+#header a {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1em;
+  padding: 0.5em;
+  background-color: #FF6200;
+  color: #FFFFFF;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.15em;
+  margin-bottom: 0.5em;
+}
+
 /* Modular Styles */
 
 #landing {
