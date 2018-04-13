@@ -268,6 +268,15 @@ h3.movie-seats {
   box-sizing: border-box;
 }
 
+#about-section {
+  width: 80vw;
+  margin: auto;
+}
+
+#about-section h2, #about-section p {
+  margin-bottom: 0.5em;
+}
+
 /* Modular Styles */
 
 #yt-trailer-video {
@@ -512,6 +521,11 @@ section.confirmation h2.movie-title {
   #payment-form, #payment-section {
     width: 50vw;
   }
+  
+  #about-section {
+  width: 50vw;
+  margin: auto;
+}
 
 }
 
