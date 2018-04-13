@@ -95,7 +95,8 @@ aside.return li:nth-child(n+3)::before {
 }
 
 a.tmdb {
-  color: #01d277;
+  color: #262626;
+  text-decoration: none;
 }
 
 /* Layout Styles */
