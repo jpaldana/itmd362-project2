@@ -20,45 +20,48 @@
       </ul>
     </aside>
     <section id="info-section">
-      <h2 class="movie-title">{Insert Movie Title}</h2>
-      <article id="movie-info">
-        <img class="movie-poster" id="poster" src="../media/posters/avengers_infinity_war.jpg" alt="Poster" />
-        <h3 class="movie-meta" id="genre">{Insert Genre}</h3>
-        <h3 class="movie-meta" id="rating">{Insert Rating}</h3>
-      </article>
-      <section id="meta-section">
-        <h2>Movie Information</h2>
-        <article class="card" id="plot-summary">
+       <section id="left">
+       <article id="movie-info">
+        <h2 class="movie-title">{Insert Movie Title}</h2>
+          <img class="movie-poster" id="poster" src="../media/posters/avengers_infinity_war.jpg" alt="Poster" />
+          <h3 class="movie-meta" id="genre">{Insert Genre}</h3>
+          <h3 class="movie-meta" id="rating">{Insert Rating}</h3>
+        </article>
+        
+         <article class="card" id="time">
+          <h3>Select a Showtime</h3>
+          <ol>
+            <li>Thursday, March 1, 2018
+              <ol>
+                <li>
+                  <a href="seats/?time=12:00:00&amp;date=2018-03-01">12:00 PM</a>
+                </li>
+                <li>
+                  <a href="seats/?time=14:00:00&amp;date=2018-03-01">2:00 PM</a>
+                </li>
+                <li>
+                  <a href="seats/?time=16:00:00&amp;date=2018-03-01">4:00 PM</a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </article>
+      </section>
+        <section id="right-section">
+         <article class="card" id="plot-summary">
           <h3>Plot Summary</h3>
           <p id="plot-summary-text">{Insert Plot Summary}</p>
         </article>
-        <article class="card" id="yt-trailer">
+        
+         <article class="card" id="yt-trailer">
           <h3>Trailer</h3>
-          <video id="yt-trailer-video" class="video-js vjs-default-skin vjs-big-play-centered" controls
+          <video id="yt-trailer-video" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered" controls
               data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}]}'>
           </video>
         </article>
-      </section>
-      <article class="card" id="time">
-        <h3>Select a Showtime</h3>
-        <h3>Select a Date</h3>
-        <ol>
-          <li>Thursday, March 1, 2018
-            <ol>
-              <li>
-                <a href="seats/?time=12:00:00&amp;date=2018-03-01">12:00 PM</a>
-              </li>
-              <li>
-                <a href="seats/?time=14:00:00&amp;date=2018-03-01">2:00 PM</a>
-              </li>
-              <li>
-                <a href="seats/?time=16:00:00&amp;date=2018-03-01">4:00 PM</a>
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </article>
-    </section>
+        
+        </section>
+      </section>    
   </main>
   <!-- Footer -->
   <footer id="footer">

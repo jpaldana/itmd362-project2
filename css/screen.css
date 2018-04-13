@@ -134,8 +134,6 @@ a.tmdb {
 }
 
 .movie-title {
-  grid-column: 1;
-  grid-row: 1;
   text-align: center;
 }
 
@@ -254,6 +252,7 @@ h3.movie-seats {
 
 #yt-trailer-video {
   width: 100%;
+  border: 0.1em #FF6200 solid;
 }
 
 #landing {
@@ -446,45 +445,32 @@ section.confirmation h2.movie-title {
 
   #landing,
   #movies,
-  main section {
+  #movies {
+    padding-right:20%;
     padding-left: 20%;
-    padding-right: 20%;
   }
-
+  
   .movie-poster {
     max-width: 12.5em;
   }
 
   #info-section {
-    display: grid;
-    grid-template-columns: 0.4fr 0.6fr;
-    padding-left: 15%;
+    display: flex;
     padding-right: 15%;
-    grid-gap: 0.5em 0.5em;
-  }
-
-  #info-section #movie-info {
-    grid-column: 1;
-    grid-row: 2;
+    padding-left: 15%;
+    align-items: stretch;
   }
   
-  #info-section #meta-section {
-    grid-column: 2;
-    grid-row:2;
-    padding: 0;
+  #info-section #left-section {
+    width: 50%;
+    margin: 0 auto;
   }
   
-  #info-section #plot-summary {
-    height: fit-content;
+  #info-section #right-section {
+    width: 50%;
+    margin: 0 auto;
   }
 
-  #info-section #time {
-    grid-column: 1 / 2;
-    grid-row: 3;
-    height: fit-content;
-  }
-
-  
   .poster {
     max-width: 10em;
   }
