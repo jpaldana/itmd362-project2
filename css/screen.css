@@ -304,7 +304,7 @@ h3.movie-seats {
 #landing img {
   vertical-align: middle;
   float: left;
-  width: 4em;
+  width: 3em;
 }
 
 #movies {
@@ -477,6 +477,7 @@ section.confirmation h2.movie-title {
   #landing img {
     float: none;
     margin: auto;
+    width: 4em;
   }
 
   #header > a {
