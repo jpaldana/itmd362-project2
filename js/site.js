@@ -140,7 +140,7 @@ $(function() {
       return;
     }
     seats = currentQueryFragments.seats.split(",");
-    $(".movie-seats, #selected-tickets").html("Seats: " + seats.join(", ") + " = " + seats.length + " &times; "+TICKET_PRICE +" = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
+    $(".movie-seats, #selected-tickets").html("Seats: " + seats.join(", ") + " = " + seats.length + " &times; $"+TICKET_PRICE.toFixed(2) +" = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
     // if the user went back to the seats page, pre-select the seats
     for (i in seats) {
       $("a[href='#" + seats[i] + "']").addClass("selected");
@@ -197,7 +197,7 @@ $(function() {
       $(this).toggleClass("selected");
       if ($(".seats a.selected").length > 0) {
         $("#payment-btn").show();
-        $("#selected-tickets").html($(".seats a.selected").text() + " = " + $(".seats a.selected").length + " &times; "+TICKET_PRICE + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
+        $("#selected-tickets").html($(".seats a.selected").text() + " = " + $(".seats a.selected").length + " &times; $"+TICKET_PRICE.toFixed(2) + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
       }
       else {
         $("#payment-btn").hide();
