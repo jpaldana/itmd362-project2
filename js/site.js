@@ -179,6 +179,11 @@ $(function() {
         $(".movie-meta#genre").text(details.genre);
         $(".movie-meta#rating").text(details.rating);
         $("p#plot-summary-text").text(details.desc);
+        if(typeof details.info.videos.results[0] === "object"){
+           var id = details.info.videos.results[0].key;
+           videojs("#yt-trailer-video").src({type: 'video/youtube', src: 'https://www.youtube.com/watch?v='+id});
+        }
+        
         if (typeof currentQueryFragments.date === "string") {
           // update date/time text if it's set
           $(".movie-date").text(getDisplayDateTime(currentQueryFragments.date, currentQueryFragments.time));
