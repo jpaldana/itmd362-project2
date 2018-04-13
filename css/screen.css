@@ -254,6 +254,10 @@ h3.movie-seats {
   margin: auto;
 }
 
+#selected-seats {
+  margin-bottom: 0.5em;
+}
+
 #payment-form p.error {
   padding: 0;
   font-size: 1em;
