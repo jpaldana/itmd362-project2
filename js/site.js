@@ -155,13 +155,17 @@ $(function() {
       var modal_container = $("<aside>").addClass("modal-container");
       var modal = $("<section>").addClass("modal");
       e.preventDefault();
-      if ($("section.modal").length > 0) {
-        $("section.modal").show();
+      if ($("aside.modal-container").length > 0) {
+        $("aside.modal-container").fadeIn(200);
         return; // don't show second modal
       }
       modal.load("/about.html #about-section");
-      modal_container.append(modal);
+      modal_container.hide().append(modal).on("click", function(e) {
+        e.preventDefault();
+        $(this).fadeOut(200);
+      });
       $("body").append(modal_container);
+      modal_container.fadeIn(200);
     });
 
     if (typeof currentQueryFragments.movie === "string") {

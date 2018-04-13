@@ -123,6 +123,9 @@ section.modal {
   color: white;
   padding: 1em;
 }
+section.modal section#about-section {
+  width: 100%;
+}
 
 /* Layout Styles */
 
