@@ -104,6 +104,10 @@ a.tmdb {
   text-decoration: none;
 }
 
+#header > a {
+  color: #FF6200;
+}
+
 /* Layout Styles */
 
 .poster {
@@ -429,6 +433,20 @@ section.confirmation h2.movie-title {
     float: none;
     margin: auto;
   }
+  
+  #header > a {
+    position: absolute;
+    right: 1.5em;
+    top: 0.7em;
+    font-size: 1em;
+    padding: 0.5em;
+    background-color: #FF6200;
+    color: #FFFFFF;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.15em;
+    margin-bottom: 0.5em;
+}
 
 }
 
