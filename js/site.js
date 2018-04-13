@@ -151,6 +151,14 @@ $(function() {
   var updateFragmentText = function() {
     // replace HTML elements text with correct values
     var details;
+    $("a[href$='about.html']").on("click", function(e) {
+      var modal_container = $("<aside>").addClass("modal-container");
+      var modal = $("<section>").addClass("modal");
+      modal_container.append(modal);
+      e.preventDefault();
+      $("body").append(modal);
+    });
+
     if (typeof currentQueryFragments.movie === "string") {
       if (typeof movies[currentQueryFragments.movie] === "object") {
         details = movies[currentQueryFragments.movie];
