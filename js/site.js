@@ -1,3 +1,6 @@
+/* https://github.com/madmurphy/cookies.js (GPL3) */
+var docCookies={getItem:function(e){return e?decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null:null},setItem:function(e,o,n,t,r,c){if(!e||/^(?:expires|max\-age|path|domain|secure)$/i.test(e))return!1;var s="";if(n)switch(n.constructor){case Number:s=n===1/0?"; expires=Fri, 31 Dec 9999 23:59:59 GMT":"; max-age="+n;break;case String:s="; expires="+n;break;case Date:s="; expires="+n.toUTCString()}return document.cookie=encodeURIComponent(e)+"="+encodeURIComponent(o)+s+(r?"; domain="+r:"")+(t?"; path="+t:"")+(c?"; secure":""),!0},removeItem:function(e,o,n){return this.hasItem(e)?(document.cookie=encodeURIComponent(e)+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"+(n?"; domain="+n:"")+(o?"; path="+o:""),!0):!1},hasItem:function(e){return!e||/^(?:expires|max\-age|path|domain|secure)$/i.test(e)?!1:new RegExp("(?:^|;\\s*)"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=").test(document.cookie)},keys:function(){for(var e=document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g,"").split(/\s*(?:\=[^;]*)?;\s*/),o=e.length,n=0;o>n;n++)e[n]=decodeURIComponent(e[n]);return e}};"undefined"!=typeof module&&"undefined"!=typeof module.exports&&(module.exports=docCookies);
+
 $(function() {
   // for date
   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -23,9 +26,18 @@ $(function() {
   };
 
   var getQueryFragments = function() {
+    /*
     var queryFragments = location.href.substring(
       location.href.lastIndexOf("/?") + 2
     ).split("&");
+    */
+    var queryFragments = docCookies.getItem("query");
+    if (queryFragments) {
+      queryFragments = queryFragments.split("&");
+    }
+    else {
+      return {};
+    }
     var pairs = {};
     var i, splitFragment;
     for (i in queryFragments) {
@@ -179,7 +191,7 @@ $(function() {
         $(".movie-meta#genre").text(details.genre);
         $(".movie-meta#rating").text(details.rating);
         $("p#plot-summary-text").text(details.desc);
-        if (typeof details.info.videos.results[0] === "object" && typeof videojs !== "undefined") {
+        if (typeof details.info === "object" && typeof details.info.videos.results[0] === "object" && typeof videojs !== "undefined") {
           id = details.info.videos.results[0].key;
           // videojs is included
           videojs("#yt-trailer-video").src({type: 'video/youtube', src: 'https://www.youtube.com/watch?v='+id}); // eslint-disable-line
@@ -204,9 +216,12 @@ $(function() {
   };
 
   var currentQueryFragments = getQueryFragments();
+  /*
   var fullFragment = location.href.substring(
     location.href.lastIndexOf("/?") + 2
   );
+  */
+  var fullFragment = docCookies.getItem("query");
 
   var init = function() {
     $("#payment-btn").hide();
@@ -237,6 +252,21 @@ $(function() {
         fullFragment = fullFragment.substring(0, fullFragment.indexOf("&seats=")); // don't duplicate &seats=
       }
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
+    });
+
+    $("a:not([href$='about.html'])").on("click", function(e) {
+      var href = $(this).attr("href").substring(
+        $(this).attr("href").lastIndexOf("/?") + 2
+      );
+      e.preventDefault();
+      docCookies.removeItem("query");
+      if ($(this).attr("href").lastIndexOf("/?") < 0) {
+        docCookies.setItem("query", "", 3600, "/");
+        location.href = $(this).attr("href");
+        return;
+      }
+      docCookies.setItem("query", href, 3600, "/");
+      location.href = $(this).attr("href").substring(0, $(this).attr("href").lastIndexOf("/"));
     });
   };
 
