@@ -232,6 +232,7 @@ section.modal section#about-section {
 
 
 #seats #payment-btn {
+  margin: auto;
   display: block;
   text-align: center;
 }
@@ -250,8 +251,8 @@ h3.movie-seats {
   margin-bottom: 0.5em;
 }
 
-#payment-btn {
-  margin: auto;
+#selected-seats {
+  margin-bottom: 0.5em;
 }
 
 #selected-seats {
