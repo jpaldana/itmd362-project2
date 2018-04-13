@@ -214,11 +214,6 @@ h3.movie-seats {
   margin-bottom: 0.5em;
 }
 
-object{
-  height: 100%;
-  width: 100%;
-}
-
 /*
 #seats input[type="button"] {
   float: right;
@@ -249,6 +244,10 @@ object{
 }
 
 /* Modular Styles */
+
+#yt-trailer-video {
+  width: 100%;
+}
 
 #landing {
   background-color: #262626;
@@ -313,10 +312,6 @@ object{
 
 #movie-info {
   margin-bottom: 1.333em;
-}
-
-#yt-trailer {
-  height: fit-content;
 }
 
 /* Seat Selection */
@@ -427,8 +422,8 @@ object{
   #info-section {
     display: grid;
     grid-template-columns: 0.4fr 0.6fr;
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 15%;
+    padding-right: 15%;
     grid-gap: 0.5em 0.5em;
   }
 
