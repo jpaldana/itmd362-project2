@@ -154,9 +154,14 @@ $(function() {
     $("a[href$='about.html']").on("click", function(e) {
       var modal_container = $("<aside>").addClass("modal-container");
       var modal = $("<section>").addClass("modal");
-      modal_container.append(modal);
       e.preventDefault();
-      $("body").append(modal);
+      if ($("section.modal").length > 0) {
+        $("section.modal").show();
+        return; // don't show second modal
+      }
+      modal.load("/about.html #about-section");
+      modal_container.append(modal);
+      $("body").append(modal_container);
     });
 
     if (typeof currentQueryFragments.movie === "string") {

@@ -121,6 +121,7 @@ aside.modal-container {
 section.modal {
   background-color: #262626;
   color: white;
+  padding: 1em;
 }
 
 /* Layout Styles */
