@@ -60,7 +60,7 @@ header {
   padding: 0.6em 0 0.6em 0;
 }
 
-header a{
+header a {
   text-decoration: none;
   color: #FFF;
 }
@@ -323,6 +323,7 @@ h3.movie-seats {
 /* Seat Selection */
 #seats-section {
   padding-top: 1em;
+  margin: auto;
 }
 
 #seats figure {
@@ -339,11 +340,6 @@ h3.movie-seats {
   background: #333;
   text-align: center;
   margin-bottom: 1em;
-}
-
-#movies h2{
-    text-align: center;
-    margin-bottom: 10px;
 }
 
 .seats {
@@ -373,10 +369,6 @@ h3.movie-seats {
   background: #FF6200;
 }
 
-#seats-section {
-  margin: auto;
-}
-
 #seats h3.movie-date {
   margin-bottom: 1em;
 }
@@ -384,7 +376,6 @@ h3.movie-seats {
 #seats figcaption {
   margin-bottom: 1em;
 }
-
 
 section.confirmation {
   background-color: #262626;
@@ -404,7 +395,7 @@ section.confirmation h2.movie-title {
 /* State Styles */
 @media only screen and (min-width: 520px) {
 
-  #seats figure, 
+  #seats figure,
   #seats-section {
     width: 26em; /* 520/20 = */
   }
@@ -438,18 +429,17 @@ section.confirmation h2.movie-title {
     float: none;
     margin: auto;
   }
-  
+
 }
 
 @media only screen and (min-width: 1280px) {
 
   #landing,
-  #movies,
   #movies {
-    padding-right:20%;
+    padding-right: 20%;
     padding-left: 20%;
   }
-  
+
   .movie-poster {
     max-width: 12.5em;
   }
@@ -460,12 +450,12 @@ section.confirmation h2.movie-title {
     padding-left: 15%;
     align-items: stretch;
   }
-  
+
   #info-section #left-section {
     width: 50%;
     margin: 0 auto;
   }
-  
+
   #info-section #right-section {
     width: 50%;
     margin: 0 auto;
