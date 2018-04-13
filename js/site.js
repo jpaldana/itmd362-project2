@@ -254,7 +254,7 @@ $(function() {
       $(this).attr("href", $(this).attr("href") + "?" + fullFragment + "&seats=" + selected_seats.join(","));
     });
 
-    $("a:not([href$='about.html'])").on("click", function(e) {
+    $("a:not([href$='about.html']):not([href^='#'])").on("click", function(e) {
       var href = $(this).attr("href").substring(
         $(this).attr("href").lastIndexOf("/?") + 2
       );
