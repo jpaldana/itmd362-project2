@@ -159,7 +159,7 @@ $(function() {
         $("aside.modal-container").fadeIn(200);
         return; // don't show second modal
       }
-      modal.load("/about.html #about-section");
+      modal.load("/itmd362-project2/about.html #about-section");
       modal_container.hide().append(modal).on("click", function(e) {
         e.preventDefault();
         $(this).fadeOut(200);
