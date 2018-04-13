@@ -92,6 +92,11 @@ $(function() {
     if (validatePaymentFields(form_array)) {
       logEvent("Thank you");
       console.log("Success, pretend to POST data request or something.");
+      $("#payment-form").hide();
+      $("#payment-section").addClass("confirmation");
+      $("#payment-section").prepend("<h2>Order Confirmation<h2>");
+      $("#payment-section").append("<h2>Payment Details:</h2>");
+      $("#payment-section").append("<ol><li>"+form_array[0].value+"</li><li>"+form_array[1].value+"</li><li>****"+form_array[3].value.substring(12)+"</ol>");
     }
     else {
       console.log("Failed. Show an error.");
@@ -131,11 +136,11 @@ $(function() {
 
   var updateSeats = function() {
     var i, seats;
-    if (typeof currentQueryFragments.seats !== "object") {
+    if (typeof currentQueryFragments.seats !== "string") {
       return;
     }
     seats = currentQueryFragments.seats.split(",");
-    $(".movie-seats, #selected-tickets").text("Seats: " + seats.join(", ") + " = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
+    $(".movie-seats, #selected-tickets").html("Seats: " + seats.join(", ") + " = " + seats.length + " &times; $"+TICKET_PRICE.toFixed(2) +" = $" + parseFloat(seats.length * TICKET_PRICE).toFixed(2));
     // if the user went back to the seats page, pre-select the seats
     for (i in seats) {
       $("a[href='#" + seats[i] + "']").addClass("selected");
@@ -192,7 +197,7 @@ $(function() {
       $(this).toggleClass("selected");
       if ($(".seats a.selected").length > 0) {
         $("#payment-btn").show();
-        $("#selected-tickets").text($(".seats a.selected").text() + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
+        $("#selected-tickets").html($(".seats a.selected").text() + " = " + $(".seats a.selected").length + " &times; $"+TICKET_PRICE.toFixed(2) + " = $" + parseFloat($(".seats a.selected").length * TICKET_PRICE).toFixed(2));
       }
       else {
         $("#payment-btn").hide();

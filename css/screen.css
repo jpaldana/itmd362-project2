@@ -175,11 +175,14 @@ a.tmdb {
   margin-top: 0.5em;
 }
 
-#payment-form,
-#payment-section {
+#payment-form {
   width: 80vw;
   margin: 0 auto;
-  padding-top: 1em;
+}
+
+#payment-section {
+  width: 80vw;
+  margin: 1em auto;
 }
 
 #payment-form li input {
@@ -212,6 +215,10 @@ a.tmdb {
 
 h3.movie-seats {
   margin-bottom: 0.5em;
+}
+
+#payment-btn {
+  margin: auto;
 }
 
 /*
@@ -367,10 +374,39 @@ h3.movie-seats {
   background: #FF6200;
 }
 
+#seats-section {
+  margin: auto;
+}
+
+#seats h3.movie-date {
+  margin-bottom: 1em;
+}
+
+#seats figcaption {
+  margin-bottom: 1em;
+}
+
+
+section.confirmation {
+  background-color: #262626;
+  color: #FFF;
+  border-radius: 0.1em;
+  padding: 1em;
+  -webkit-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  -moz-box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+  box-shadow: -0.05em 0.1em 0.9em -0.1em rgba(0,0,0,0.75);
+}
+
+section.confirmation h2.movie-title {
+  text-align: left;
+  font-size: 1em;
+}
+
 /* State Styles */
 @media only screen and (min-width: 520px) {
 
-  #seats figure {
+  #seats figure, 
+  #seats-section {
     width: 26em; /* 520/20 = */
   }
 
@@ -455,7 +491,6 @@ h3.movie-seats {
 
   #payment-form, #payment-section {
     width: 50vw;
-    margin: 0 auto;
   }
 
 }
