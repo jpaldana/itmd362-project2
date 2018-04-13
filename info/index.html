@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
   <link rel="stylesheet" media="screen" href="../css/screen.css" />
   <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" />
+    <link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 </head>
 <body>
   <header id="header">
@@ -33,7 +34,14 @@
         </article>
         <article class="card" id="yt-trailer">
           <h3>Trailer</h3>
-          <object data="http://www.youtube.com/embed/GlIzuTQGgzs"></object>
+          <video
+              id="yt-trailer-video"
+              class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"
+              controls
+              width="640" height="264"
+              data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}] }'>
+              
+              </video>
         </article>
       </section>
       <article class="card" id="time">
@@ -66,5 +74,7 @@
   </footer>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="../js/site.js"></script>
+  <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.4.1/Youtube.min.js"></script>
 </body>
 </html>

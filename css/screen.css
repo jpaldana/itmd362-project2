@@ -340,6 +340,11 @@ object{
   margin-bottom: 1em;
 }
 
+#movies h2{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .seats {
   width: auto;
   display: flex;
@@ -403,7 +408,7 @@ object{
     float: none;
     margin: auto;
   }
-
+  
 }
 
 @media only screen and (min-width: 1280px) {
@@ -414,13 +419,6 @@ object{
     padding-left: 20%;
     padding-right: 20%;
   }
-
-  /*
-  #movies {
-    padding-left: 20%;
-    padding-right: 20%;
-  }
-  */
 
   .movie-poster {
     max-width: 12.5em;
