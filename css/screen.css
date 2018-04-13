@@ -288,7 +288,7 @@ h3.movie-seats {
 
 #movies ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-auto-flow: row;
   grid-gap: 1.5em 1.333em;
 }
@@ -397,6 +397,16 @@ section.confirmation h2.movie-title {
 }
 
 /* State Styles */
+
+@media only screen and (min-width: 370px) {
+  #movies ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    grid-gap: 1.5em 1.333em;
+  }
+}
+
 @media only screen and (min-width: 520px) {
 
   #seats figure,
